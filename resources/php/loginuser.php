@@ -20,6 +20,9 @@ echo $userPassword;
 $sql = "SELECT * FROM medicalProfessional WHERE mpEmail = '$userEmail' and mpPassword = '$userPassword' ";
 $result = $conn->query($sql);
 
+$userPassword = '';
+
+// Check if the user exists
 if ($result->num_rows > 0) {
   session_start();
   $_SESSION['loggedin'] = TRUE;

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
     <title>Login</title>
     <link rel="stylesheet" href="./resources/css/style_login.css">
 </head>
-<body>
+<body onload="clearPassword();">
     <div class="container">
         <div class="row">
             <nav class="navbar">
@@ -24,14 +25,14 @@
             </nav>
     <div class="center">
         <h1>Login</h1>
-        <form method="post" action = './resoources/php/loginuser.php'>
+        <form method="post" onsubmit action="./resources/php/loginuser.php">
             <div class="txt_field">
-                <input type="email" name = "email" required>
+                <input type="email" name="email" required>
                 <span></span>
                 <label>Email</label>
             </div>
             <div class="txt_field">
-                <input type="password" name = "password"  required>
+                <input type="password" name="password" id="password" required>
                 <span></span>
                 <label>Password</label>
             </div>
@@ -43,5 +44,12 @@
             </div>
         </form>
     </div>
+    <script>
+    function clearPassword() {
+    // alert("Deleting the password!");
+
+    document.getElementById('password').value = '';
+    }
+    </script>
 </body>
 </html>

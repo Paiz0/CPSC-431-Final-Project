@@ -4,7 +4,8 @@ session_start();
 // If the user is not logged in redirect to the login page...
 if (empty($_SESSION['loggedin'])) {
     //Code that will get current value of submit button clicked
-    exit;
+    header('Location: ../../login.html');
+    // exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -27,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     Welcome, your user ID is <?php echo $_SESSION['currentUser'] ?>
     <br>
-    <a href = "logout.php"> Logout </a>
+    <a href = "./logout.php"> Logout </a>
     <?php 
-    require 'connection.php'; 
+    require './connection.php'; 
     $sql = "SELECT * FROM `medicalProfessional` WHERE mpContact = 1";
     $result = $conn->query($sql);
 

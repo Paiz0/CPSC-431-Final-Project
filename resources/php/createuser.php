@@ -40,8 +40,8 @@ $sql = "INSERT INTO medicalProfessional(mpTitle, mpEmail, mpPassword, mpLocation
 
 
 if (mysqli_query($conn, $sql)) {
-     echo "Account creation successfull";
-     echo "<a href='../../login.php'>You may login</a>";
+     echo "Account creation successful";
+     echo "<a href='../../login.html'>You may login</a>";
    } else {
      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
    }
