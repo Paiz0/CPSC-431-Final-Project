@@ -22,45 +22,45 @@
                     </li>
                 </ul>
             </nav>
-            <div class="center">
-                <h1>Register</h1>
-                <form method="post" action="./resources/php/createuser.php">
-                    <div class="txt_field">
-                        <input type="text" name="full_name" required>
-                        <span></span>
-                        <label>Full Name</label>
+        </div>
+        <div class="center">
+            <h1>Register</h1>
+            <form method="post" action="./resources/php/createuser.php">
+                <div class="txt_field">
+                    <input type="text" name="full_name" required>
+                    <span></span>
+                    <label>Full Name</label>
+                </div>
+                <div class="txt_field">
+                    <input type="email" name="email" required>
+                    <span></span>
+                    <label>Email</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" name="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" name="zip" required>
+                    <span></span>
+                    <label>Zip</label>
+                </div>
+                <div class="txt_field">
+                    <input id="title" type="text" readonly="true" name="title" required>
+                    <span></span>
+                    <label id="curr_title" class="dropbtn">Title</label>
+                    <div id="titles" class="dropdown-content">
                     </div>
-                    <div class="txt_field">
-                        <input type="email" name="email" required>
-                        <span></span>
-                        <label>Email</label>
-                    </div>
-                    <div class="txt_field">
-                        <input type="password" name="password" required>
-                        <span></span>
-                        <label>Password</label>
-                    </div>
-                    <div class="txt_field">
-                        <input type="text" name="zip" required>
-                        <span></span>
-                        <label>Zip</label>
-                    </div>
-                    <div class="txt_field">
-                        <input id="title" type="text" readonly="true" name="title" required>
-                        <span></span>
-                        <label id="curr_title" class="dropbtn">Title</label>
-                        <div id="titles" class="dropdown-content">
-                        </div>
-                    </div>
-                    <div>
-                        <label> Contactable ?<br></label>
-                        <input type="radio" name="MyRadio" value="First" checked>Yes<br> 
-                        <input type="radio" name="MyRadio" value="Second">No
+                </div>
+                <div>
+                    <label> Contactable ?<br></label>
+                    <input type="radio" name="MyRadio" value="First" checked>Yes<br> 
+                    <input type="radio" name="MyRadio" value="Second">No
 
-                    </div>
-                    <input type="submit" name="submit" value="Submit">
-                </form>
-            </div>
+                </div>
+                <input type="submit" name="submit" value="Submit">
+            </form>
         </div>
     </div>
     <script src="./resources/javascript/titles.js"></script>

@@ -5,13 +5,16 @@ body{
   font-family: Georgia, 'Times New Roman', Times, serif;
   background: linear-gradient(120deg, #2980b9, #8e44ad);
   height: 100vh;
-  overflow: hidden;
+  /* overflow-x: hidden; */
+  background-attachment: fixed;
 }
 .center{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  top: 100px;
+  /* The following line centers the form */
+  left: calc((100% - 400px) / 2);
+  /* left: 50%; */
+  /* transform: translate(-50%,-50%); */
   width: 400px;
   background: white;
   border-radius: 10px;
@@ -60,23 +63,31 @@ form .txt_field{
   transition: 0.5s;
 }
 .txt_field input:focus ~ label,
-.txt_field input:valid ~ label{
+.txt_field input:valid ~ label,
+.txt_field #title:hover ~ #curr_title{
+  /* Note: If you want the title to raise when you hover over it, do:
+        .txt_field:hover label at the end of the parameters above */
   top: -5px;
   color: #2691d9;
 }
 
-/* #title:hover ~ #curr_title,
-.dropdown-content:hover ~ #curr_title {
-  top: -5px;
-  color: #2691d9;
-} */
+.txt_field input:invalid ~ label,
+.txt_field input:empty ~ #curr_title{
+  /* top: -5px; */
+  color: red;
+}
+
+.txt_field input:invalid ~ span::before{
+  background: red;
+}
+
 .txt_field input:focus ~ span::before,
 .txt_field input:valid ~ span::before{
   width: 100%;
 }
 .dropdown-content {
   display: none;
-  position: absolute;
+  /* position: absolute; */
   background-color: white;
   /* min-width: 100px; */
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -95,6 +106,7 @@ form .txt_field{
   display: block; */
 }
 .txt_field:hover .dropdown-content {
+  position: absolute;
   display: block;
 }
 .recover{
