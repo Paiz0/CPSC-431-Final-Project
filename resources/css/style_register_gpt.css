@@ -5,17 +5,20 @@ body{
   font-family: Georgia, 'Times New Roman', Times, serif;
   background: linear-gradient(120deg, #2980b9, #8e44ad);
   height: 100vh;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
+  /* (So that the scrollbar doesn't break the linear-gradient) */
   background-attachment: fixed;
 }
 .center{
   position: absolute;
-  top: 100px;
+  top: max(125px, calc((100% - 617.44px) / 2));
+  /* top: 100px; */
   /* The following line centers the form */
   left: calc((100% - 400px) / 2);
   /* left: 50%; */
   /* transform: translate(-50%,-50%); */
   width: 400px;
+  height: 617.44px;
   background: white;
   border-radius: 10px;
 }
