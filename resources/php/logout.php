@@ -1,5 +1,3 @@
-<script>parent.clearPassword();</script>
-
 <?php
 
 session_start();
