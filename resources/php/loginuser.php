@@ -1,3 +1,28 @@
+<!--
+
+Here's an example of PHP code that can hash and compare hashed passwords to plain-text
+passwords.
+
+$password = "Hello";
+
+$wrong_password = "Wrong";
+
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+echo $hashed_password."<br>";
+
+if (password_verify($wrong_password, $hashed_password)) {
+
+	echo "True";
+
+}
+
+else {
+
+	echo "False";
+
+} -->
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -19,8 +44,6 @@ echo $userPassword;
 
 $sql = "SELECT * FROM medicalProfessional WHERE mpEmail = '$userEmail' and mpPassword = '$userPassword' ";
 $result = $conn->query($sql);
-
-$userPassword = '';
 
 // Check if the user exists
 if ($result->num_rows > 0) {

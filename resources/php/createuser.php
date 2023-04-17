@@ -15,8 +15,9 @@ if (!$conn) {
 
 $mpFullName = $_POST["full_name"];
 $mpEmail = $_POST["email"];
-$mpPassword = $_POST["password"];
-$mpzip = $_POST["zip"];
+$mpPassword = password_hash($_POST["password"], PASSWORD_DEFAULT);
+// $mpPassword = $_POST["password"];
+$mpZip = $_POST["zip"];
 $mpTitle = $_POST["title"];
 $radioVal = $_POST["MyRadio"];
 
@@ -36,18 +37,26 @@ else if ($radioVal == "Second")
     //echo("You choose No");
 }
 
-$sql = "INSERT INTO medicalProfessional(mpTitle, mpEmail, mpPassword, mpLocation, mpContact, mpFullName) VALUES ('$mpTitle','$mpEmail','$mpPassword','$mpzip ','$radioVal','$mpFullName')";
+// echo $mpFullName."<br>";
+// echo $mpEmail."<br>";
+// echo $mpPassword."<br>";
+// echo $mpZip."<br>";
+// echo $mpTitle."<br>";
+// echo $radioVal."<br>";
 
+// $sql = "INSERT INTO medicalProfessional(mpTitle, mpEmail, mpPassword, mpLocation, mpContact, mpFullName) VALUES ('$mpTitle','$mpEmail','$mpPassword','$mpzip ','$radioVal','$mpFullName')";
+$sql = "INSERT INTO Users(name, email, password, zipcode, type) VALUES ('$mpFullName', '$mpEmail', '$mpPassword', '$mpZip', '1')";
 
-if (mysqli_query($conn, $sql)) {
+if (mysqli_query($conn, $sql))
+{
      echo "Account creation successful";
      echo "<a href='../../login.html'>You may login</a>";
-   } else {
+}
+   
+else
+{
      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-   }
-
-
-
+}
 
 mysqli_close($conn);
 ?>
