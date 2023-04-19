@@ -12,7 +12,7 @@ class QueryUserStatus extends Query
     }
 
     // Query whether a specified email & password exists in the database.
-    // The return value is true if the user exists and false otherwise
+    // The return value is the row of user data or null if it doesn't exist.
     public function FindUser($email, $password)
     {
         $sql = "SELECT password FROM Users WHERE email = :email";

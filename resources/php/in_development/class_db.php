@@ -51,10 +51,7 @@ class Database
         $this->password = $password;
 
         // Now an instance of the class has been made
-        // self::$instance = true; 
-
-        // Establish the connection
-        $this->establishConnection();
+        // self::$instance = true;
     }
 
     // Make sure that the function is accessible without the class needing
@@ -66,7 +63,7 @@ class Database
     //     return self::$instance;
     // }
 
-    private function establishConnection()
+    public function establishConnection()
     {
         // DSN = Data Source Name
         $dsn = "mysql:host=$this->host;dbname=$this->db_name";
@@ -85,6 +82,12 @@ class Database
             die("Failed to connect to the database: " . $exception->getMessage());
             // throw new MyDatabaseException($exception->getMessage(), $exception->getCode());
         }
+    }
+
+    public function closeConnection()
+    {
+        // Since $pdo is a ptr, set it to point to null
+        $pdo = null;
     }
 
     // Establish all get methods (no need for set methods unless we allow the user

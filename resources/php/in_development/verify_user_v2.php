@@ -32,10 +32,17 @@ $password = $_POST['password'];
 // Create a new database instance
 $db = new Database(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
 
+// Establish the database connection
+$db->establishConnection();
+
 // Create a new query object to check the user's status
 $user_status = new QueryUserStatus($db);
 
+// Find the user with the given email and password
 $user = $user_status->FindUser($email, $password);
+
+// Terminate the database connection
+$db->closeConnection();
 
 // Check to see if the user exists in the database and redirect
 // them to the dashboard if they do exist
