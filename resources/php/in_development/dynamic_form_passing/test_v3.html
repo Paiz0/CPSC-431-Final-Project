@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Find Doctors</title>
+    <style>
+      /* CSS for left section */
+      .left {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      
+      /* CSS for right section */
+      .right {
+        float: right;
+        width: 50%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+        text-align: center;
+		  }
+    </style>
+  </head>
+  <body>
+    <div class="left">
+      <h1>Find Doctors</h1>
+      <!-- <form form method="post" action="title_grabber.php"> -->
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="zipcode">Zipcode:</label>
+        <input type="text" id="zipcode" name="zipcode"><br><br>
+
+        <label for="title">Title:</label>
+        <select id="title" name="title">
+          <option value="Dr.">Dr</option>
+          <option value="MD">MD</option>
+          <option value="DO">DO</option>
+          <option value="NP">NP</option>
+          <option value="PA">PA</option>
+        </select>
+        <button type="button" onclick="addTitle();">Add</button>
+        <button type="button" onclick="clearTitles();">Clear</button>
+        <ul id="titleList" name="mylist"></ul>
+        <!-- Hidden input field for title list -->
+        <input type="hidden" id="titleListInput" name="titleList">
+    
+        <button type="button" onclick="searchData();">Submit</button>
+      </form>
+    </div>
+    
+    <div class="right">
+        <h1>Results</h1>
+        <!-- <ul id="resultsList"></ul> -->
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Zipcode</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
