@@ -15,7 +15,7 @@ class QueryUserStatus extends Query
     // The return value is the row of user data or null if it doesn't exist.
     public function FindUser($email, $password)
     {
-        $sql = "SELECT password FROM Users WHERE email = :email";
+        $sql = "SELECT * FROM Users WHERE email = :email";
         $params = ["email" => $email];
 
         // Execute the query and save the result

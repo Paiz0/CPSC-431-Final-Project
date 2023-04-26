@@ -24,6 +24,12 @@ function addTitle()
     titleListInput.value = list.innerHTML;
 }
 
+function clearTitles()
+{
+	document.getElementById("titleList").innerHTML = "";
+}
+
+
 // JavaScript for showing titles in results list
 // function showTitles()
 // {
@@ -73,7 +79,7 @@ function searchData()
 			// file. When we do JSON.parse() we're converting the data into a
 			// JavaScript object. This allows us to access the query results in a
 			// dictionary-like manner.
-            console.log(this.responseText)
+            console.log(this.responseText);
 			var data = JSON.parse(this.responseText);
 			var table = document.getElementById("data-table");
 			var tbody = table.getElementsByTagName("tbody")[0];

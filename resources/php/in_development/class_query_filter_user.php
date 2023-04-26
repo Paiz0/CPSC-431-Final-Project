@@ -65,30 +65,53 @@ class QueryFilterUser extends Query
         //       each user that's returned. The name and provisions will be
         //       displayed, while the email will be set as a session variable
         //       so we know which profile to access.
-        $sql_one = "SELECT U.name, U.zipcode, T.title FROM Users AS U, Doctors AS D, Titles AS T WHERE U.userID = D.userID AND D.userID = T.userID AND D.doctorID = T.doctorID AND U.name = :name AND U.zipcode = :zipcode AND ";
-        
-        $sql_two = "(";
+        // $sql_one = "SELECT U.name, U.zipcode, T.title FROM Users AS U, Doctors AS D, Titles AS T WHERE U.userID = D.userID AND D.userID = T.userID AND D.doctorID = T.doctorID AND U.name = :name AND U.zipcode = :zipcode AND ";
+        $sql_one = "SELECT U.name, U.zipcode, T.title FROM Users AS U, Doctors AS D, Titles AS T WHERE U.userID = D.userID AND D.userID = T.userID AND D.doctorID = T.doctorID";
 
-        $params = ["name" => $name, "zipcode" => $zipcode];
+        $params = [];
 
-        for ($i = 0; $i < count($titles); $i++)
+        if ($name != "")
         {
-            if ($i + 1 == count($titles))
-            {
-                $sql_two = $sql_two . " T.title = :title" . ($i + 1) . " )";
-            }
-            else
-            {
-                $sql_two = $sql_two . " T.title = :title" . ($i + 1) . " OR ";
-            }
-
-            // Append a new bind parameter to the $params array so that
-            // the SQL statement can be interpreted with PDO
-            $params["title" . ($i + 1)] = $titles[$i];
+            $sql_one = $sql_one . " AND U.name = :name";
+            $params["name"] = $name;
         }
 
-        // Combine the two query parts
-        $sql = $sql_one . $sql_two;
+        if ($zipcode != "")
+        {
+            $sql_one = $sql_one . " AND U.zipcode = :zipcode";
+            $params["zipcode"] = $zipcode;
+        }
+
+        if (trim($titles[0]) != "")
+        {
+            $sql_two = " AND (";
+
+            // $params = ["name" => $name, "zipcode" => $zipcode];
+
+            for ($i = 0; $i < count($titles); $i++)
+            {
+                if ($i + 1 == count($titles))
+                {
+                    $sql_two = $sql_two . " T.title = :title" . ($i + 1) . " )";
+                }
+                else
+                {
+                    $sql_two = $sql_two . " T.title = :title" . ($i + 1) . " OR ";
+                }
+
+                // Append a new bind parameter to the $params array so that
+                // the SQL statement can be interpreted with PDO
+                $params["title" . ($i + 1)] = $titles[$i];
+            }
+
+            // Combine the two query parts
+            $sql = $sql_one . $sql_two;
+        }
+
+        else
+        {
+            $sql = $sql_one;
+        }
 
         // $sql = "SELECT password FROM Users WHERE email = :email";
         // $params = ["email" => $email];

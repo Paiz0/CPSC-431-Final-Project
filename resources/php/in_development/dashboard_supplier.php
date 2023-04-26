@@ -83,7 +83,7 @@ else if ($_SESSION['type'] != 1)
     <div class="button-container">
         <button class="button" onclick="window.location.href='find-doctors.php'">Find Doctors</button>
         <button class="button" onclick="window.location.href='meetup-requests.php'">Meetup Requests</button>
-        <button class="button" onclick="window.location.href='messaging.php'">Messaging</button>
+        <button class="button" onclick="window.location.href='./messaging_system/landing.html'">Messaging</button>
         <form method="post" action="../logout.php">
           <button type="submit" class="logout-button">Log Out</button>
         </form>

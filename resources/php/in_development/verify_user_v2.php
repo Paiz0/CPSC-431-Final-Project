@@ -1,9 +1,9 @@
 <?php
 
+session_start();
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-session_start();
 
 // This file needs access to the database and necessary query files
 require_once 'class_query_user_status.php';
