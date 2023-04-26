@@ -101,13 +101,42 @@
     </div>
     <ul id="email-list"></ul>
     <script>
+        // Gather the variables needed to send the email off to be
+        // queried at the database
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
         const emailDisplay = document.getElementById('email-display');
-        // if (email)
-        // {
-        //     emailDisplay.textContent = email;
-        // }
+
+        // Create the variable to store the "Send Message" button so that
+        // when we click it we'll send the message off to be added to the
+        // database.
+        const sendMessage = document.getElementById('add-button');
+
+        // Create an event listener for when the button is clicked
+        sendMessage.addEventListener("click", function()
+        {
+
+          var message = document.getElementById('email-input').value.trim();
+
+          // Make sure that the message field isn't empty
+          if (message !== '')
+          {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                  // Code to be executed after the response from PHP is received
+                  console.log(this.responseText);
+                }
+            };
+            // We need to send both the message we're sending and the email of the person who's getting the message
+            xhttp.open("GET", "send_message.php?message=" + encodeURIComponent(message) + "&email=" + encodeURIComponent(email), true);
+            xhttp.send();
+          }
+
+        });
+
         if (email)
         {
             emailDisplay.textContent = email;
