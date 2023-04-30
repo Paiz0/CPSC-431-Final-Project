@@ -2,6 +2,8 @@
 
 session_start();
 
+require_once './config.php';
+
 // Check if the user isn't logged in and redirect them
 // back to the login page if they aren't logged in
 if (empty($_SESSION['loggedin'])) {
@@ -10,7 +12,7 @@ if (empty($_SESSION['loggedin'])) {
 }
 
 // Make sure the user isn't pretending to be a supplier
-else if ($_SESSION['type'] != 0)
+else if ($_SESSION['type'] != DOCTOR_TYPE)
 {
   header('Location: ./dashboard_supplier.php');
   exit;
@@ -83,7 +85,7 @@ else if ($_SESSION['type'] != 0)
     <h1>Dashboard</h1>
     <div class="button-container">
       <button class="button" onclick="window.location.href='edit-profile.php'">Edit Profile</button>
-      <button class="button" onclick="window.location.href='meetup-requirements.php'">Meetup Requests</button>
+      <button class="button" onclick="window.location.href='find-suppliers.php'">Find Suppliers</button>
       <button class="button" onclick="window.location.href='./messaging_system/landing.html'">Messaging</button>
       <form method="post" action="../logout.php">
         <button type="submit" class="logout-button">Log Out</button>

@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/c533c7667b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./resources/css/style_messaging.css">
 </head>
-<body>
+<body onload="loadMessages()">
     <div class="container">
         <div class="row">
             <nav class="navbar">
@@ -28,27 +28,118 @@
     <div class="wrapper">
         <section class="chat-area">
             <header>
-                <span>
-                    username placeholder
-                </span>
+                <span id="email-display"></span>
             </header>
-            <div class="chat-box">
-                <div class="outgoing">
-                    <div class="outdetail">
-                        <p>some kind of text here</p>
-                    </div>
-                </div>
-                <div class="incoming">
-                    <div class="indetail">
-                        <p>some kind of text here</p>
-                    </div>
-                </div>
-            </div>
+            <div class="chat-box" id="chat-box"></div>
             <form action="" class="typing-area">
-                <input type="text" placeholder="Type a message here...">
-                <button><i class="fas fa-paper-plane"></i></button>
+                <input type="message-input" id="message-input" placeholder="Type a message here...">
+                <button type="button" id="send-button"><i class="fas fa-paper-plane"></i></button>
             </form>
         </section>
-    </div>    
+    </div>
+    <script>
+        // Gather the variables needed to send the email off to be
+        // queried at the database
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        const emailDisplay = document.getElementById('email-display');
+
+        // Create the variable to store the "Send Message" button so that
+        // when we click it we'll send the message off to be added to the
+        // database.
+        const sendMessage = document.getElementById('send-button');
+
+        // Create an event listener for when the button is clicked
+        sendMessage.addEventListener("click", function()
+        {
+
+            var message = document.getElementById('message-input').value;
+
+            // Make sure that the message field isn't empty
+            if (message !== '')
+            {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function()
+                {
+                    if (this.readyState == 4 && this.status == 200)
+                    {
+                        // Code to be executed after the response from PHP is received
+                        // console.log(this.responseText);
+                        loadMessages();
+                    }
+                };
+                // We need to send both the message we're sending and the email of the person who's getting the message
+                xhttp.open("GET", "./resources/php/in_development/messaging_system/send_message.php?message=" + encodeURIComponent(message) + "&email=" + encodeURIComponent(email), true);
+                xhttp.send();
+          } 
+
+        });
+
+        function loadMessages()
+        {
+            if (email)
+            {
+                emailDisplay.textContent = email;
+                const xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function()
+                {
+                    if (this.readyState == 4 && this.status == 200)
+                    {
+                        // Code to be executed after the response from PHP is received
+                        console.log(this.responseText);
+                        // console.log(this.responseText[0]["msgContent"])
+                        var data = JSON.parse(this.responseText);
+                        var messageBox = document.getElementById("chat-box");
+
+                        // Clear the message box from previous messages
+                        messageBox.innerHTML = "";
+
+                        for (var i = 0; i < data.length; i++)
+                        {
+                            var row = data[i];
+
+                            var outerDiv = document.createElement("div");
+                            var innerDiv = document.createElement("div");
+                            var messageText = document.createElement("p");
+
+                            console.log(email);
+                            console.log(email.length);
+                            console.log(row.senderEmail);
+                            console.log(row.senderEmail.length);
+
+                            // Check if the current row contains the email
+                            // of the person were conversing with as being
+                            // the sender (in which case we know what class
+                            // to assign the message into)
+                            if (email == row.senderEmail)
+                            {
+                                console.log("The other person sent the message!");
+                                outerDiv.classList.add("incoming");
+                                innerDiv.classList.add("indetail");
+                            }
+                            else
+                            {
+                                console.log("You sent the message!");
+                                outerDiv.classList.add("outgoing");
+                                innerDiv.classList.add("outdetail");
+                            }
+
+                            messageText.textContent = row.msgContent;
+
+                            innerDiv.appendChild(messageText);
+                            outerDiv.appendChild(innerDiv);
+                            messageBox.appendChild(outerDiv);
+                        }
+                    }
+                };
+                xhttp.open("GET", "./resources/php/in_development/messaging_system/get_messages.php?email=" + encodeURIComponent(email), true);
+                xhttp.send();
+            }
+            else
+            {
+                emailDisplay.textContent = 'Email parameter not found';
+            }
+        }
+    </script>
 </body>
 </html>

@@ -35,7 +35,8 @@ addButton.addEventListener("click", function()
             emailInput.value = "";
             viewButton.addEventListener("click", function()
             {
-                window.location.href = "messaging.html?email=" + encodeURIComponent(email);
+                // CHANGE THE PATH HERE IF NEEDED!
+                window.location.href = "../../../../messaging.html?email=" + encodeURIComponent(email);
                 // alert(email);
             });
             removeButton.addEventListener("click", function()

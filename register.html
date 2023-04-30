@@ -25,7 +25,7 @@
         </div>
         <div class="center">
             <h1>Register</h1>
-            <form method="post" action="./resources/php/createuser.php">
+            <form method="post" action="./resources/php/createuser_v2.php">
                 <div class="txt_field">
                     <input type="text" name="full_name" required>
                     <span></span>
@@ -46,23 +46,34 @@
                     <span></span>
                     <label>Zip</label>
                 </div>
-                <div class="txt_field">
-                    <input id="title" type="text" name="title" required>
+                <div class="txt_field" id="doctor">
+                    <input id="specialty" type="text" name="specialty" required>
                     <span></span>
-                    <label id="curr_title" class="dropbtn">Title</label>
-                    <div id="titles" class="dropdown-content">
+                    <label id="curr_specialty" class="dropbtn">Specialty</label>
+                    <div id="specialties" class="dropdown-content">
+                    </div>
+                </div>
+                <div class="txt_field" id="supplier" hidden>
+                    <input id="provision" type="text" name="provision">
+                    <span></span>
+                    <label id="curr_provision" class="dropbtn">Provision</label>
+                    <div id="provisions" class="dropdown-content">
                     </div>
                 </div>
                 <div>
-                    <label> Contactable ?<br></label>
-                    <input type="radio" name="MyRadio" value="First" checked>Yes<br> 
-                    <input type="radio" name="MyRadio" value="Second">No
-
+                    <label> Contactable?<br></label>
+                    <input type="radio" name="contactable-radio" value="Yes" checked>Yes<br> 
+                    <input type="radio" name="contactable-radio" value="No">No<br>
+                </div>
+                <div id="user-type">
+                    <label>User Type<br></label>
+                    <input type="radio" name="usertype-radio" value="Doctor" checked>Doctor<br> 
+                    <input type="radio" name="usertype-radio" value="Supplier">Supplier
                 </div>
                 <input type="submit" name="submit" value="Submit">
             </form>
         </div>
     </div>
-    <script src="./resources/javascript/titles.js"></script>
+    <script src="./resources/javascript/registration.js"></script>
 </body>
 </html>

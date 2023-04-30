@@ -21,7 +21,8 @@ class QueryMessageHandler extends Query
     {
         // This sql statement gets all messages sent by
         // $sender_id and received by $receiver_id
-        $sql = "SELECT msgID, userIDSender, msgContent FROM Messages WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id";
+        // $sql = "SELECT msgID, userIDSender, msgContent FROM Messages WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id";
+        $sql = "SELECT msgID, Receiver.email AS receiverEmail, Sender.email AS senderEmail, msgContent FROM Messages, Users AS Receiver, Users AS Sender WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id AND Receiver.userID = userIDReceiver AND Sender.userID = userIDSender";
 
         // Store the parameters to be plugged into the sql statement above
         $params = ["receiver_id" => $receiver_id, "sender_id" => $sender_id];

@@ -4,6 +4,25 @@ body{
     overflow: hidden;
 }
 
+.chat-area header span{
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    background-color: #5d88d5;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 50px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    text-shadow: 1px 1px #333;
+}
+
+
+
+
+
 .wrapper{
     position: absolute;
     top: 50%;

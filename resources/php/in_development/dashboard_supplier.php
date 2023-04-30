@@ -2,6 +2,8 @@
 
 session_start();
 
+require_once './config.php';
+
 // Check if the user isn't logged in
 if (empty($_SESSION['loggedin'])) {
   header('Location: ../../../login.html');
@@ -9,7 +11,7 @@ if (empty($_SESSION['loggedin'])) {
 }
 
 // Make sure the user isn't pretending to be a doctor
-else if ($_SESSION['type'] != 1)
+else if ($_SESSION['type'] != SUPPLIER_TYPE)
 {
   header('Location: ./dashboard_doctor.php');
   exit;
@@ -81,8 +83,8 @@ else if ($_SESSION['type'] != 1)
   <body>
     <h1>Dashboard</h1>
     <div class="button-container">
-        <button class="button" onclick="window.location.href='find-doctors.php'">Find Doctors</button>
-        <button class="button" onclick="window.location.href='meetup-requests.php'">Meetup Requests</button>
+        <button class="button" onclick="window.location.href='edit-profile.php'">Edit Profile</button>
+        <button class="button" onclick="window.location.href='./dynamic_form_passing/test_v3.html'">Find Doctors</button>
         <button class="button" onclick="window.location.href='./messaging_system/landing.html'">Messaging</button>
         <form method="post" action="../logout.php">
           <button type="submit" class="logout-button">Log Out</button>
