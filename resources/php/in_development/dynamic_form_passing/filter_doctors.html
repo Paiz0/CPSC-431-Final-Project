@@ -38,17 +38,13 @@
         <label for="zipcode">Zipcode:</label>
         <input type="text" id="zipcode" name="zipcode"><br><br>
 
-        <label for="title">Title:</label>
+        <label for="title" id="extra-info">Specialty:</label>
         <select id="title" name="title">
-          <option value="Dr.">Dr</option>
-          <option value="MD">MD</option>
-          <option value="DO">DO</option>
-          <option value="NP">NP</option>
-          <option value="PA">PA</option>
+          <!-- PUT DEFAULT VALUES HERE! -->
         </select>
         <button type="button" onclick="addTitle();">Add</button>
+        <button type="button" onclick="clearTitles();">Clear</button>
         <ul id="titleList" name="mylist"></ul>
-        
         <!-- Hidden input field for title list -->
         <input type="hidden" id="titleListInput" name="titleList">
     

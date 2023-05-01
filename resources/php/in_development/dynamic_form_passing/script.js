@@ -1,3 +1,69 @@
+window.onload = function() {
+
+	// Get the id of the extra-info field,
+	// so we know whether to load specialties
+	// or titles into the dropdown list.
+	var dropdown_title = document.getElementById("extra-info");
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			// Note that extra_info_type is so we can know
+			// what the key is for the returned data.
+			var extra_info = JSON.parse(this.responseText);
+			var extra_info_type = null;
+
+			// console.log(extra_info);
+
+			// If the extra-info field contains
+			// specialties, then load all specialties
+			// from the database into a list
+			if (dropdown_title.textContent === "Specialty:")
+			{
+				extra_info = extra_info["specialties"];
+				extra_info_type = "title";
+			}
+
+			// Otherwise, if the extra-info field contains
+			// provisions, then load all provisions
+			// from the database into
+			else if (dropdown_title.textContent === "Provision:")
+			{
+				extra_info = extra_info["provisions"];
+				extra_info_type = "provision";
+			}
+
+			// console.log(extra_info);
+
+			// Get the id of the "select" tag
+			var dropdown_container = document.getElementById("title");
+
+			// For every element in the returned list,
+			// create a new "option" element with its
+			// value being the value of the element and
+			// append it to the "select" element.
+			extra_info.forEach((dropdown_content) => {
+				// Create the element that we're going to append to
+				// the dropdown_container
+				var dropdown_element = document.createElement("option");
+
+				// Set the properties of the element
+				dropdown_element.value = dropdown_content[extra_info_type];
+				dropdown_element.textContent = dropdown_content[extra_info_type];
+
+				// Append the element to the dropdown_container
+				dropdown_container.appendChild(dropdown_element);
+			});
+		}
+	};
+
+	xhr.open("GET", "../get_specialties_provisions.php", true);
+	xhr.send();
+
+}
+
+
 // JavaScript for adding titles to list
 function addTitle()
 {

@@ -29,7 +29,7 @@
   </head>
   <body>
     <div class="left">
-      <h1>Find Doctors</h1>
+      <h1>Find Suppliers</h1>
       <!-- <form form method="post" action="title_grabber.php"> -->
       <form>
         <label for="name">Name:</label>
@@ -38,13 +38,9 @@
         <label for="zipcode">Zipcode:</label>
         <input type="text" id="zipcode" name="zipcode"><br><br>
 
-        <label for="title">Title:</label>
+        <label for="title" id="extra-info">Provision:</label>
         <select id="title" name="title">
-          <option value="Dr.">Dr</option>
-          <option value="MD">MD</option>
-          <option value="DO">DO</option>
-          <option value="NP">NP</option>
-          <option value="PA">PA</option>
+          <!-- PUT DEFAULT VALUES HERE! -->
         </select>
         <button type="button" onclick="addTitle();">Add</button>
         <button type="button" onclick="clearTitles();">Clear</button>

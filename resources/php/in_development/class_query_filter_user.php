@@ -22,30 +22,50 @@ class QueryFilterUser extends Query
         //       each user that's returned. The name and provisions will be
         //       displayed, while the email will be set as a session variable
         //       so we know which profile to access.
-        $sql_one = "SELECT U.name, U.zipcode, P.provision FROM Users AS U, Suppliers AS S, Provisions AS P WHERE U.userID = S.userID AND S.userID = P.userID AND S.supplierID = P.supplierID AND U.name = :name AND U.zipcode = :zipcode AND ";
-        
-        $sql_two = "(";
+        $sql_one = "SELECT U.name, U.zipcode, P.provision FROM Users AS U, Suppliers AS S, Provisions AS P WHERE U.userID = S.userID AND S.userID = P.userID AND S.supplierID = P.supplierID";
 
-        $params = ["name" => $name, "zipcode" => $zipcode];
+        $params = [];
 
-        for ($i = 0; $i < count($provisions); $i++)
+        if ($name != "")
         {
-            if ($i + 1 == count($provisions))
-            {
-                $sql_two = $sql_two . " P.provision = :provision" . ($i + 1) . " )";
-            }
-            else
-            {
-                $sql_two = $sql_two . " P.provision = :provision" . ($i + 1) . " OR ";
-            }
-
-            // Append a new bind parameter to the $params array so that
-            // the SQL statement can be interpreted with PDO
-            $params["provision" . ($i + 1)] = $provisions[$i];
+            $sql_one = $sql_one . " AND U.name = :name";
+            $params["name"] = $name;
         }
 
-        // Combine the two query parts
-        $sql = $sql_one . $sql_two;
+        if ($zipcode != "")
+        {
+            $sql_one = $sql_one . " AND U.zipcode = :zipcode";
+            $params["zipcode"] = $zipcode;
+        }
+
+        if (trim($provisions[0]) != "")
+        {
+            $sql_two = " AND (";
+
+            for ($i = 0; $i < count($provisions); $i++)
+            {
+                if ($i + 1 == count($provisions))
+                {
+                    $sql_two = $sql_two . " P.provision = :provision" . ($i + 1) . " )";
+                }
+                else
+                {
+                    $sql_two = $sql_two . " P.provision = :provision" . ($i + 1) . " OR ";
+                }
+
+                // Append a new bind parameter to the $params array so that
+                // the SQL statement can be interpreted with PDO
+                $params["provision" . ($i + 1)] = $provisions[$i];
+            }
+
+            // Combine the two query parts
+            $sql = $sql_one . $sql_two;
+        }
+
+        else
+        {
+            $sql = $sql_one;
+        }
 
         // $sql = "SELECT password FROM Users WHERE email = :email";
         // $params = ["email" => $email];

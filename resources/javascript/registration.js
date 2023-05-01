@@ -141,7 +141,7 @@ window.onload = function() {
         }
     }
 
-    xhr.open("GET", "/CPSC-431-Final-Project/resources/php/in_development/get_specialties_provisions.php", true);
+    xhr.open("GET", "resources/php/in_development/get_specialties_provisions.php", true);
     xhr.send();
 }
 
