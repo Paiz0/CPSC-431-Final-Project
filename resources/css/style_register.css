@@ -164,11 +164,10 @@ input[type="submit"]:hover{
 /*-----------------------------------------------imported from landing-----------------------------------------------*/
 .container{
   width: 100%;
-  min-height: 100vh;
 }
 .row{
-  width: 90%;
-  padding: 0px 80px;
+  width: auto;
+  padding: 0px 40px;
 }
 .navbar{
   width: 100%;
@@ -204,6 +203,5 @@ input[type="submit"]:hover{
   color: #fff;
   font-size: 35px;
   font-weight: 500;
-  text-transform: uppercase;
   margin-top: 10px;
 }
