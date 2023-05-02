@@ -18,7 +18,7 @@ require_once '../class_query_filter_user.php';
 // parameters
 $name = $_GET["name"];
 $zipcode = $_GET["zipcode"];
-$titles = $_GET["titles"];
+// $titles = $_GET["titles"];
 
 // Create a new database instance
 $db = new Database(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
@@ -30,12 +30,36 @@ $db->establishConnection();
 // users.
 $filter_user = new QueryFilterUser($db);
 
-// Convert the "titles" string into an array
-$titles = explode(",", $titles);
+if (isset($_GET["specialties"]))
+{
+    $extra_info = $_GET["specialties"];
 
-// Get the results after performing the query that filters suppliers
-// by name, zipcode and provisions that were entered earlier
-$results = $filter_user->FilterDoctors($name, $zipcode, $titles);
+    // Convert the "extra_info" string into an array
+    $extra_info = explode(",", $extra_info);
+
+    // Get the results after performing the query that filters suppliers
+    // by name, zipcode and provisions that were entered earlier
+    $results = $filter_user->FilterDoctors($name, $zipcode, $extra_info);
+}
+
+else if (isset($_GET["provisions"]))
+{
+    $extra_info = $_GET["provisions"];
+
+    // Convert the "extra_info" string into an array
+    $extra_info = explode(",", $extra_info);
+
+    // Get the results after performing the query that filters suppliers
+    // by name, zipcode and provisions that were entered earlier
+    $results = $filter_user->FilterSuppliers($name, $zipcode, $extra_info);
+}
+
+// // Convert the "extra_info" string into an array
+// $extra_info = explode(",", $extra_info);
+
+// // Get the results after performing the query that filters suppliers
+// // by name, zipcode and provisions that were entered earlier
+// $results = $filter_user->FilterDoctors($name, $zipcode, $extra_info);
 
 
 // $sql = "SELECT * FROM Users WHERE zipcode = $zipcode";

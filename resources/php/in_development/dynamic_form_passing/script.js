@@ -1,9 +1,9 @@
-window.onload = function() {
+// Get the id of the extra-info field,
+// so we know whether to load specialties
+// or titles into the dropdown list.
+var dropdown_title = document.getElementById("extra-info");
 
-	// Get the id of the extra-info field,
-	// so we know whether to load specialties
-	// or titles into the dropdown list.
-	var dropdown_title = document.getElementById("extra-info");
+window.onload = function() {
 
 	var xhr = new XMLHttpRequest();
 
@@ -157,17 +157,30 @@ function searchData()
 				var row = data[i];
 				var tr = document.createElement("tr");
 				var name = document.createElement("td");
-				name.textContent = row.name;
+				var name_link = document.createElement("a");
+				name_link.href = "../../../../profile.html?userID=" + encodeURIComponent(row.userID);
+				name_link.textContent = row.name;
+				name.appendChild(name_link);
 				var zipcode = document.createElement("td");
 				zipcode.textContent = row.zipcode;
-                var title = document.createElement("td");
-				title.textContent = row.title;
+				if (dropdown_title.textContent === "Specialty:")
+				{
+					var extra_info = document.createElement("td");
+					extra_info.textContent = row.title;
+				}
+				else if (dropdown_title.textContent === "Provision:")
+				{
+					var extra_info = document.createElement("td");
+					extra_info.textContent = row.provision;
+				}
+                // var title = document.createElement("td");
+				// title.textContent = row.title;
 				// var phone = document.createElement("td");
 				// phone.textContent = row.phone;
 				tr.appendChild(name);
                 tr.appendChild(zipcode);
 				// tr.appendChild(email);
-                tr.appendChild(title);
+                tr.appendChild(extra_info);
 				// tr.appendChild(phone);
 				tbody.appendChild(tr);
 			}
@@ -179,6 +192,14 @@ function searchData()
 	// directly) then we need to find another way to provide parameters to the php file.
 	// This is why we use a GET request, because we can specify the parameters in the
 	// URL which we hand-craft ourselves with "getData.php?search=".
-	xhr.open("GET", "test.php?name=" + encodeURIComponent(name) + "&zipcode=" + encodeURIComponent(zipcode) + "&titles=" + encodeURIComponent(titleQueryString), true);
+	if (dropdown_title.textContent === "Specialty:")
+	{
+		xhr.open("GET", "test.php?name=" + encodeURIComponent(name) + "&zipcode=" + encodeURIComponent(zipcode) + "&specialties=" + encodeURIComponent(titleQueryString), true);
+	}
+	else if (dropdown_title.textContent === "Provision:")
+	{
+		xhr.open("GET", "test.php?name=" + encodeURIComponent(name) + "&zipcode=" + encodeURIComponent(zipcode) + "&provisions=" + encodeURIComponent(titleQueryString), true);
+	}
+
 	xhr.send();
 }
