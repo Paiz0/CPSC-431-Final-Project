@@ -14,11 +14,18 @@ session_start();
 
 require_once '../class_message_handler.php';
 
-// Retrieve the data that was inputted into the search
-// parameters
-$email = $_GET["email"];
-$zipcode = $_GET["zipcode"];
-$titles = $_GET["titles"];
+if (isset($_SESSION["userID"]))
+{
+    // Retrieve the session data for the
+    // currently logged in user.
+    $userID = $_SESSION["userID"];
+}
+
+else
+{
+    header('Content-Type: application/json');
+    echo json_encode([]);
+}
 
 // Create a new database instance
 $db = new Database(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
@@ -28,14 +35,11 @@ $db->establishConnection();
 
 // Create an object for performing queries related to filtering
 // users.
-$filter_user = new QueryFilterUser($db);
-
-// Convert the "titles" string into an array
-$titles = explode(",", $titles);
+$msg_handler = new QueryMessageHandler($db);
 
 // Get the results after performing the query that filters suppliers
 // by name, zipcode and provisions that were entered earlier
-$results = $filter_user->FilterDoctors($name, $zipcode, $titles);
+$results = $msg_handler->findContacts($userID);
 
 
 // $sql = "SELECT * FROM Users WHERE zipcode = $zipcode";

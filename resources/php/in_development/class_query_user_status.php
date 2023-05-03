@@ -59,7 +59,7 @@ class QueryUserStatus extends Query
 
     public function GetSpecialities()
     {
-        $sql = "SELECT * FROM Titles";
+        $sql = "SELECT DISTINCT title FROM Titles";
 
         $params = [];
 
@@ -68,7 +68,7 @@ class QueryUserStatus extends Query
 
     public function GetProvisions()
     {
-        $sql = "SELECT * FROM Provisions";
+        $sql = "SELECT DISTINCT provision FROM Provisions";
 
         $params = [];
 
@@ -111,6 +111,24 @@ class QueryUserStatus extends Query
         {
             echo "There are multiple instances of the same user in the database!<br>";
             echo "This means a uniqueness constraint failed on the email column!";
+        }
+
+        return null;
+    }
+
+    // This is very similar to FindUser above
+    function FindProfile($userID)
+    {
+        $sql = "SELECT name, email, zipcode, type FROM Users WHERE userID = :userID";
+
+        $params = ["userID" => $userID];
+
+        $result = parent::executeQuery($sql, $params);
+
+        // Check whether the number of rows equals exactly one
+        if (count($result) == 1)
+        {
+            return $result[0];
         }
 
         return null;

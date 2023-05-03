@@ -51,6 +51,19 @@ class QueryMessageHandler extends Query
         $result = parent::executeQuery($sql, $params);
     }
 
+    // This function returns all emails of users who have either
+    // sent or received a message from the user with $userID
+    public function findContacts($userID)
+    {
+        $sql = "SELECT U.email FROM Users AS U, Messages AS M WHERE (M.userIDReceiver = :userID AND M.userIDSender = U.userID) OR (M.userIDSender = :userID AND M.userIDReceiver = U.userID)";
+
+        $params = ["userID" => $userID];
+
+        $result = parent::executeQuery($sql, $params);
+
+        return $result;
+    }
+
     // This function queries the database for the id and email
     // of all people who have sent/received a message to/from
     // the recipient
@@ -58,21 +71,21 @@ class QueryMessageHandler extends Query
     //       of all people who have sent a message to the
     //       recipient. Note that this will require a
     //       redesign of the Conversation page.
-    public function findContacts($user)
-    {
-        # This sql statement gets the email and id of
-        # all people who have ever sent/received a message
-        # to/from $user.
-        $sql = "SELECT DISTINCT U.email, U.userID FROM Users AS U, Messages AS M WHERE (U.userID = M.userIDSender AND M.userIDReceiver = :user) OR (U.userID = M.userIDReceiver AND M.userIDSender = :user)";
+    // public function findContacts($user)
+    // {
+    //     # This sql statement gets the email and id of
+    //     # all people who have ever sent/received a message
+    //     # to/from $user.
+    //     $sql = "SELECT DISTINCT U.email, U.userID FROM Users AS U, Messages AS M WHERE (U.userID = M.userIDSender AND M.userIDReceiver = :user) OR (U.userID = M.userIDReceiver AND M.userIDSender = :user)";
         
-        # Store the parameters to be plugged into the sql statement above
-        $params = ["user" => $user];
+    //     # Store the parameters to be plugged into the sql statement above
+    //     $params = ["user" => $user];
 
-        // Execute the query and save the result
-        $result = parent::executeQuery($sql, $params);
+    //     // Execute the query and save the result
+    //     $result = parent::executeQuery($sql, $params);
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     // Find the user's id who owns $email
     public function getIDFromEmail($email)
