@@ -74,15 +74,16 @@ CREATE TABLE IF NOT EXISTS Messages (
 
 CREATE TABLE IF NOT EXISTS Appointments (
 
-    userIDCreator int NOT NULL,
-    userIDRequester int NOT NULL,
+    userIDSender int NOT NULL,
+    userIDReceiver int NOT NULL,
     apptID int AUTO_INCREMENT NOT NULL,
-    apptDetails varchar(500),
+    apptDetails varchar(500) NOT NULL,
+    apptDate DATETIME NOT NULL,
 
     UNIQUE (apptID),
-    FOREIGN KEY (userIDCreator) REFERENCES Users(userID),
-    FOREIGN KEY (userIDRequester) REFERENCES Users(userID),
-    PRIMARY KEY (userIDRequester, apptID)
+    FOREIGN KEY (userIDSender) REFERENCES Users(userID),
+    FOREIGN KEY (userIDReceiver) REFERENCES Users(userID),
+    PRIMARY KEY (userIDReceiver, apptID)
 );
 
 -- INSERT INTO Users VALUES (1, "email@email.com", "password", 12345, 1);

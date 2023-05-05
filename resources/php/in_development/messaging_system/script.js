@@ -86,6 +86,23 @@ function appendEmail(emails)
                     // session involving the email listed
                     // in span.innerText.
                     console.log(span.innerText);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.onreadystatechange = function() {
+
+                        // var data = JSON.parse(this.responseText);
+
+                        // console.log(data);
+
+                        // Do stuff with the returned data if a
+                        // functionality down the road requires it
+
+                    }
+
+                    xhr.open("GET", "remove_contact.php?email=" + encodeURIComponent(span.innerText), true);
+                    xhr.send();
+
                     emailList.removeChild(li);
                 });
             }

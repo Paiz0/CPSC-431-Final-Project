@@ -8,6 +8,10 @@ var email_field = document.getElementById("email");
 var zipcode_field = document.getElementById("zipcode");
 var type_field = document.getElementById("type");
 
+// Adjust the href to the Appointment page to include the
+// userID from the Profile page
+document.getElementById("appt-page-redirect").href += "?userID=" + encodeURIComponent(userID);
+
 if (userID !== null)
 {
     window.onload = function() {
@@ -17,7 +21,6 @@ if (userID !== null)
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200)
             {
-
                 var data = JSON.parse(this.responseText);
 
                 console.log(data);
@@ -33,9 +36,7 @@ if (userID !== null)
                 email_field.textContent = email;
                 zipcode_field.textContent = zipcode;
                 type_field.textContent = type;
-
             }
-
         }
 
         xhr.open("GET", "resources/php/in_development/load_profile.php?userID=" + encodeURIComponent(userID), true);

@@ -116,8 +116,19 @@ class QueryUserStatus extends Query
         return null;
     }
 
+    public function FindUserID($email)
+    {
+        $sql = "SELECT userID FROM Users WHERE email = :email";
+
+        $params = ["email" => $email];
+
+        $result = parent::executeQuery($sql, $params);
+
+        return $result[0];
+    }
+
     // This is very similar to FindUser above
-    function FindProfile($userID)
+    public function FindProfile($userID)
     {
         $sql = "SELECT name, email, zipcode, type FROM Users WHERE userID = :userID";
 

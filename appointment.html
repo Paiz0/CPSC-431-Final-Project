@@ -29,8 +29,7 @@
                 <h1 class="form-header">Appointment Scheduling</h1>
                 <p>Make an appointment today</p>
             </div>
-            <form class="box" action="#"> 
-
+            <form id="form" class="box" onsubmit="return false;"> 
                 <!-- <div class="fRow1">
                     <div id="name-box" class="fEntry">
                         <p>Full Name</p>
@@ -56,18 +55,18 @@
                 <div class="fRow3">
                     <div id="note-box">
                         <p>Additional Details</p>
-                        <textarea id="note" cols="10" rows="2" placeholder="What would you like to mention?"></textarea>
+                        <textarea id="note" cols="10" rows="2" placeholder="What would you like to mention?" required></textarea>
                     </div>
                 </div>
 
                 <div class="fRow4">
                     <div class="submit-button">
-                        <button type="submit" class="sButton">Submit</button>
+                        <button id="submit" type="submit" class="sButton">Submit</button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>
+<script src="./resources/javascript/appointment.js"></script>
 </body>
 </html>
