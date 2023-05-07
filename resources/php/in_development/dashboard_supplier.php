@@ -83,7 +83,7 @@ else if ($_SESSION['type'] != SUPPLIER_TYPE)
   <body>
     <h1>Dashboard</h1>
     <div class="button-container">
-        <button class="button" onclick="window.location.href='edit-profile.php'">Edit Profile</button>
+        <button class="button" onclick="window.location.href='../../../edit_profile.html'">Edit Profile</button>
         <button class="button" onclick="window.location.href='./dynamic_form_passing/filter_doctors.html'">Find Doctors</button>
         <button class="button" onclick="window.location.href='./messaging_system/landing.html'">Messaging</button>
         <form method="post" action="../logout.php">

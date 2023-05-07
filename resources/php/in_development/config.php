@@ -11,4 +11,8 @@ define("SUPPLIER_TYPE", "0");
 define("RADIO_ON", "1");
 define("RADIO_OFF", "0");
 
+define("REJECTED_APPOINTMENT", "0");
+define("PENDING_APPOINTMENT", "1");
+define("ACCEPTED_APPOINTMENT", "2");
+
 ?>

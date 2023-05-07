@@ -4,8 +4,28 @@ session_start();
 
 require_once 'class_query_user_status.php';
 
-// Get the URL parameter
-$userID = $_GET["userID"];
+// Check if the userID is provided (i.e. in the
+// case of profile.js).
+// If userID isn't provided, then we're loading
+// information about the default user
+if (isset($_GET["userID"]))
+{
+    // Get the URL parameter
+    $userID = $_GET["userID"];
+}
+
+else if (isset($_SESSION["userID"]))
+{
+    $userID = $_SESSION["userID"];
+}
+
+// Otherwise nothing is set and we can't load
+// anything
+else
+{
+    header('Content-Type: application/json');
+    echo json_encode([]);    
+}
 
 // Create a new database instance
 $db = new Database(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);

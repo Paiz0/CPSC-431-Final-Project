@@ -84,7 +84,7 @@ else if ($_SESSION['type'] != DOCTOR_TYPE)
   <body>
     <h1>Dashboard</h1>
     <div class="button-container">
-      <button class="button" onclick="window.location.href='edit-profile.php'">Edit Profile</button>
+      <button class="button" onclick="window.location.href='../../../edit_profile.html'">Edit Profile</button>
       <button class="button" onclick="window.location.href='./dynamic_form_passing/filter_suppliers.html'">Find Suppliers</button>
       <button class="button" onclick="window.location.href='./messaging_system/landing.html'">Messaging</button>
       <form method="post" action="../logout.php">

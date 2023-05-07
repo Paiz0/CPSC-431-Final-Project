@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS Appointments (
     apptID int AUTO_INCREMENT NOT NULL,
     apptDetails varchar(500) NOT NULL,
     apptDate DATETIME NOT NULL,
+    apptStatus TINYINT(1) NOT NULL,
 
     UNIQUE (apptID),
     FOREIGN KEY (userIDSender) REFERENCES Users(userID),
