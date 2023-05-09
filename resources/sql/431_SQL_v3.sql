@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS mdunite_test;
+CREATE DATABASE IF NOT EXISTS mdunite;
 
 USE mdunite;
 
