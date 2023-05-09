@@ -96,78 +96,7 @@ window.onload = function() {
 
             console.log(data);
 
-            // Setup the incoming appointments in the html
-
-            // Setup the rejected appointments in the html
-            for (let appt in data["incoming"]["rejected"])
-            {
-                // Create all necessary html elements
-                var parentDiv = document.getElementById("incoming");
-                var boundingDiv = document.createElement("div");
-                var apptDiv = document.createElement("div");
-                var nameDiv = document.createElement("div");
-                var nameText = document.createTextNode("Full name");
-                var nameP = document.createElement("p");
-                var fromDiv = document.createElement("div");
-                var fromText = document.createTextNode("From Email");
-                var fromP = document.createElement("p");
-                var zipcodeDiv = document.createElement("div");
-                var zipcodeText = document.createTextNode("Zipcode");
-                var zipcodeP = document.createElement("p");
-                var datetimeDiv = document.createElement("div");
-                var datetimeText = document.createTextNode("Datetime");
-                var datetimeP = document.createElement("p");
-                var optionsDiv = document.createElement("div");
-                var notesDiv = document.createElement("div");
-                var notesText = document.createTextNode("Notes");
-                var notesP = document.createElement("p");
-                var status = document.createElement("i");
-
-                // Set the properties of the html elements for the first div
-                apptDiv.className = "appts";
-                nameP.textContent = data["incoming"]["rejected"][appt]["name"];
-                nameDiv.className = "result";
-                nameDiv.appendChild(nameText);
-                nameDiv.appendChild(nameP);
-                fromP.textContent = data["incoming"]["rejected"][appt]["email"];
-                fromDiv.className = "result";
-                fromDiv.appendChild(fromText);
-                fromDiv.appendChild(fromP);
-                zipcodeP.textContent = data["incoming"]["rejected"][appt]["zipcode"];
-                zipcodeDiv.className = "result";
-                zipcodeDiv.appendChild(zipcodeText);
-                zipcodeDiv.appendChild(zipcodeP);
-                datetimeP.textContent = data["incoming"]["rejected"][appt]["apptDate"];
-                datetimeDiv.className = "result";
-                datetimeDiv.appendChild(datetimeText);
-                datetimeDiv.appendChild(datetimeP);
-                status.className = "fa-solid fa-xmark fa-2xl";
-                status.style = "color: #FE0000";
-
-                // Construct all elements together for the first div
-                apptDiv.appendChild(nameDiv);
-                apptDiv.appendChild(fromDiv);
-                apptDiv.appendChild(zipcodeDiv);
-                apptDiv.appendChild(datetimeDiv);
-                optionsDiv.appendChild(status);
-                apptDiv.appendChild(optionsDiv);
-
-                // Set the properties of the html elements for the notes section
-                notesP.textContent = data["incoming"]["rejected"][appt]["apptDetails"];
-                notesDiv.className = "result-notes";
-                notesDiv.appendChild(notesText);
-                notesDiv.appendChild(notesP);
-
-                // Append all of the divs to the bounding div
-                boundingDiv.appendChild(apptDiv);
-                boundingDiv.appendChild(notesDiv);
-
-                // Append the bounding div to its parent div
-                parentDiv.appendChild(boundingDiv);
-
-
-                console.log(data["incoming"]["rejected"][appt]);
-            }
+            // Setup the incoming appointments in the html\
 
             // Setup the pending appointments in the html
             for (let appt in data["incoming"]["pending"])
@@ -243,11 +172,12 @@ window.onload = function() {
                 // Set the events for the buttons
                 acceptButton.addEventListener("click", function() {
                     // Get the parent node
-                    var parent = acceptButton.parentNode;
+                    var parent = this.parentNode;
 
                     // Remove the buttons
-                    acceptButton.remove();
-                    denyButton.remove();
+                    this.nextElementSibling.remove();
+                    this.remove();
+                    // denyButton.remove();
 
                     // Create the status element
                     var status = document.createElement("i");
@@ -272,11 +202,11 @@ window.onload = function() {
                     // denyButton.parentNode.parentNode.parentNode.remove();
 
                     // Get the parent node
-                    var parent = denyButton.parentNode;
+                    var parent = this.parentNode;
 
                     // Remove the buttons
-                    acceptButton.remove();
-                    denyButton.remove();
+                    this.previousSibling.remove();
+                    this.remove();
 
                     // Create the status element
                     var status = document.createElement("i");
@@ -366,13 +296,11 @@ window.onload = function() {
                 console.log(data["incoming"]["accepted"][appt]);
             }
 
-            // Setup the outgoing appointments in the html
-
             // Setup the rejected appointments in the html
-            for (let appt in data["outgoing"]["rejected"])
+            for (let appt in data["incoming"]["rejected"])
             {
                 // Create all necessary html elements
-                var parentDiv = document.getElementById("outgoing");
+                var parentDiv = document.getElementById("incoming");
                 var boundingDiv = document.createElement("div");
                 var apptDiv = document.createElement("div");
                 var nameDiv = document.createElement("div");
@@ -388,27 +316,26 @@ window.onload = function() {
                 var datetimeText = document.createTextNode("Datetime");
                 var datetimeP = document.createElement("p");
                 var optionsDiv = document.createElement("div");
-                var status = document.createElement("i");
-                
                 var notesDiv = document.createElement("div");
                 var notesText = document.createTextNode("Notes");
                 var notesP = document.createElement("p");
+                var status = document.createElement("i");
 
                 // Set the properties of the html elements for the first div
                 apptDiv.className = "appts";
-                nameP.textContent = data["outgoing"]["rejected"][appt]["name"];
+                nameP.textContent = data["incoming"]["rejected"][appt]["name"];
                 nameDiv.className = "result";
                 nameDiv.appendChild(nameText);
                 nameDiv.appendChild(nameP);
-                fromP.textContent = data["outgoing"]["rejected"][appt]["email"];
+                fromP.textContent = data["incoming"]["rejected"][appt]["email"];
                 fromDiv.className = "result";
                 fromDiv.appendChild(fromText);
                 fromDiv.appendChild(fromP);
-                zipcodeP.textContent = data["outgoing"]["rejected"][appt]["zipcode"];
+                zipcodeP.textContent = data["incoming"]["rejected"][appt]["zipcode"];
                 zipcodeDiv.className = "result";
                 zipcodeDiv.appendChild(zipcodeText);
                 zipcodeDiv.appendChild(zipcodeP);
-                datetimeP.textContent = data["outgoing"]["rejected"][appt]["apptDate"];
+                datetimeP.textContent = data["incoming"]["rejected"][appt]["apptDate"];
                 datetimeDiv.className = "result";
                 datetimeDiv.appendChild(datetimeText);
                 datetimeDiv.appendChild(datetimeP);
@@ -424,7 +351,7 @@ window.onload = function() {
                 apptDiv.appendChild(optionsDiv);
 
                 // Set the properties of the html elements for the notes section
-                notesP.textContent = data["outgoing"]["rejected"][appt]["apptDetails"];
+                notesP.textContent = data["incoming"]["rejected"][appt]["apptDetails"];
                 notesDiv.className = "result-notes";
                 notesDiv.appendChild(notesText);
                 notesDiv.appendChild(notesP);
@@ -437,8 +364,10 @@ window.onload = function() {
                 parentDiv.appendChild(boundingDiv);
 
 
-                console.log(data["outgoing"]["rejected"][appt]);
+                console.log(data["incoming"]["rejected"][appt]);
             }
+
+            // Setup the outgoing appointments in the html
 
             // Setup the pending appointments in the html
             for (let appt in data["outgoing"]["pending"])
@@ -451,7 +380,7 @@ window.onload = function() {
                 var nameText = document.createTextNode("Full name");
                 var nameP = document.createElement("p");
                 var fromDiv = document.createElement("div");
-                var fromText = document.createTextNode("From Email");
+                var fromText = document.createTextNode("To Email");
                 var fromP = document.createElement("p");
                 var zipcodeDiv = document.createElement("div");
                 var zipcodeText = document.createTextNode("Zipcode");
@@ -523,7 +452,7 @@ window.onload = function() {
                 var nameText = document.createTextNode("Full name");
                 var nameP = document.createElement("p");
                 var fromDiv = document.createElement("div");
-                var fromText = document.createTextNode("From Email");
+                var fromText = document.createTextNode("To Email");
                 var fromP = document.createElement("p");
                 var zipcodeDiv = document.createElement("div");
                 var zipcodeText = document.createTextNode("Zipcode");
@@ -582,6 +511,78 @@ window.onload = function() {
 
 
                 console.log(data["outgoing"]["accepted"][appt]);
+            }
+
+            // Setup the rejected appointments in the html
+            for (let appt in data["outgoing"]["rejected"])
+            {
+                // Create all necessary html elements
+                var parentDiv = document.getElementById("outgoing");
+                var boundingDiv = document.createElement("div");
+                var apptDiv = document.createElement("div");
+                var nameDiv = document.createElement("div");
+                var nameText = document.createTextNode("Full name");
+                var nameP = document.createElement("p");
+                var fromDiv = document.createElement("div");
+                var fromText = document.createTextNode("To Email");
+                var fromP = document.createElement("p");
+                var zipcodeDiv = document.createElement("div");
+                var zipcodeText = document.createTextNode("Zipcode");
+                var zipcodeP = document.createElement("p");
+                var datetimeDiv = document.createElement("div");
+                var datetimeText = document.createTextNode("Datetime");
+                var datetimeP = document.createElement("p");
+                var optionsDiv = document.createElement("div");
+                var status = document.createElement("i");
+                
+                var notesDiv = document.createElement("div");
+                var notesText = document.createTextNode("Notes");
+                var notesP = document.createElement("p");
+
+                // Set the properties of the html elements for the first div
+                apptDiv.className = "appts";
+                nameP.textContent = data["outgoing"]["rejected"][appt]["name"];
+                nameDiv.className = "result";
+                nameDiv.appendChild(nameText);
+                nameDiv.appendChild(nameP);
+                fromP.textContent = data["outgoing"]["rejected"][appt]["email"];
+                fromDiv.className = "result";
+                fromDiv.appendChild(fromText);
+                fromDiv.appendChild(fromP);
+                zipcodeP.textContent = data["outgoing"]["rejected"][appt]["zipcode"];
+                zipcodeDiv.className = "result";
+                zipcodeDiv.appendChild(zipcodeText);
+                zipcodeDiv.appendChild(zipcodeP);
+                datetimeP.textContent = data["outgoing"]["rejected"][appt]["apptDate"];
+                datetimeDiv.className = "result";
+                datetimeDiv.appendChild(datetimeText);
+                datetimeDiv.appendChild(datetimeP);
+                status.className = "fa-solid fa-xmark fa-2xl";
+                status.style = "color: #FE0000";
+
+                // Construct all elements together for the first div
+                apptDiv.appendChild(nameDiv);
+                apptDiv.appendChild(fromDiv);
+                apptDiv.appendChild(zipcodeDiv);
+                apptDiv.appendChild(datetimeDiv);
+                optionsDiv.appendChild(status);
+                apptDiv.appendChild(optionsDiv);
+
+                // Set the properties of the html elements for the notes section
+                notesP.textContent = data["outgoing"]["rejected"][appt]["apptDetails"];
+                notesDiv.className = "result-notes";
+                notesDiv.appendChild(notesText);
+                notesDiv.appendChild(notesP);
+
+                // Append all of the divs to the bounding div
+                boundingDiv.appendChild(apptDiv);
+                boundingDiv.appendChild(notesDiv);
+
+                // Append the bounding div to its parent div
+                parentDiv.appendChild(boundingDiv);
+
+
+                console.log(data["outgoing"]["rejected"][appt]);
             }
         }
     }

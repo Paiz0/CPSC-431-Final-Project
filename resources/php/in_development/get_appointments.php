@@ -38,27 +38,47 @@ $incoming_accepted = $appt_handler->getAcceptedAppointments($userID, $incoming=t
 // Consolidate the incoming appointments
 $incoming_appts = ["incoming" => ["rejected" => $incoming_rejected, "pending" => $incoming_pending, "accepted" => $incoming_accepted]];
 
-// Add additional info from the Users table to the incoming appointments
-foreach ($incoming_appts["incoming"] as $apptStatus => $apptDetails)
+// add '&' before $apptDetails to make it a reference
+foreach ($incoming_appts["incoming"] as $apptStatus => &$apptDetails)
 {
-    // Store the result of the profile info we retrieve from QueryUserStatus.
-    $new_info = $extra_info->FindProfile($incoming_appts["incoming"][$apptStatus][0]["userIDSender"]);
-
-    // Remove the userID from our incoming appointments (it's no longer needed after the
-    // previous query was executed)
-    // unset($incoming_appts["incoming"][$apptStatus]["userIDSender"]);
-
-    // Merge the new info into the key/value pair involving $apptStatus
-    // as the key and the value as being new_info + the old details
-    if (!empty($incoming_appts["incoming"][$apptStatus]) && !empty($new_info))
+    // add '&' before $appt to make it a reference
+    foreach ($apptDetails as &$appt)
     {
-        $incoming_appts["incoming"][$apptStatus][0] = $incoming_appts["incoming"][$apptStatus][0] + $new_info;
-    }
-    else if (!empty($new_info))
-    {
-        $incoming_appts["incoming"][$apptStatus][0] = $new_info;
+        $new_info = $extra_info->FindProfile($appt["userIDSender"]);
+
+        if (!empty($appt) && !empty($new_info))
+        {
+            $appt = $appt + $new_info;
+        }
+        else if (!empty($new_info))
+        {
+            $appt = $new_info;
+        }        
     }
 }
+
+
+// // Add additional info from the Users table to the incoming appointments
+// foreach ($incoming_appts["incoming"] as $apptStatus => $apptDetails)
+// {
+//     // Store the result of the profile info we retrieve from QueryUserStatus.
+//     $new_info = $extra_info->FindProfile($incoming_appts["incoming"][$apptStatus][0]["userIDSender"]);
+
+//     // Remove the userID from our incoming appointments (it's no longer needed after the
+//     // previous query was executed)
+//     // unset($incoming_appts["incoming"][$apptStatus]["userIDSender"]);
+
+//     // Merge the new info into the key/value pair involving $apptStatus
+//     // as the key and the value as being new_info + the old details
+//     if (!empty($incoming_appts["incoming"][$apptStatus]) && !empty($new_info))
+//     {
+//         $incoming_appts["incoming"][$apptStatus][0] = $incoming_appts["incoming"][$apptStatus][0] + $new_info;
+//     }
+//     else if (!empty($new_info))
+//     {
+//         $incoming_appts["incoming"][$apptStatus][0] = $new_info;
+//     }
+// }
 
 // Get the outgoing appointments
 $outgoing_rejected = $appt_handler->getRejectedAppointments($userID, $incoming=false);
@@ -68,27 +88,46 @@ $outgoing_accepted = $appt_handler->getAcceptedAppointments($userID, $incoming=f
 // Consolidate the outgoing appointments
 $outgoing_appts = ["outgoing" => ["rejected" => $outgoing_rejected, "pending" => $outgoing_pending, "accepted" => $outgoing_accepted]];
 
-// Add additional info from the Users table to the outgoing appointments
-foreach ($outgoing_appts["outgoing"] as $apptStatus => $apptDetails)
+// add '&' before $apptDetails to make it a reference
+foreach ($outgoing_appts["outgoing"] as $apptStatus => &$apptDetails)
 {
-    // Store the result of the profile info we retrieve from QueryUserStatus.
-    $new_info = $extra_info->FindProfile($outgoing_appts["outgoing"][$apptStatus][0]["userIDReceiver"]);
-
-    // Remove the userID from our outgoing appointments (it's no longer needed after the
-    // previous query was executed)
-    // unset($outgoing_appts["outgoing"][$apptStatus]["userIDReceiver"]);
-
-    // Merge the new info into the key/value pair involving $apptStatus
-    // as the key and the value as being new_info + the old details
-    if (!empty($outgoing_appts["outgoing"][$apptStatus]) && !empty($new_info))
+    // add '&' before $appt to make it a reference
+    foreach ($apptDetails as &$appt)
     {
-        $outgoing_appts["outgoing"][$apptStatus][0] = $outgoing_appts["outgoing"][$apptStatus][0] + $new_info;
-    }
-    else if (!empty($new_info))
-    {
-        $outgoing_appts["outgoing"][$apptStatus][0] = $new_info;
+        $new_info = $extra_info->FindProfile($appt["userIDReceiver"]);
+
+        if (!empty($appt) && !empty($new_info))
+        {
+            $appt = $appt + $new_info;
+        }
+        else if (!empty($new_info))
+        {
+            $appt = $new_info;
+        }        
     }
 }
+
+// // Add additional info from the Users table to the outgoing appointments
+// foreach ($outgoing_appts["outgoing"] as $apptStatus => $apptDetails)
+// {
+//     // Store the result of the profile info we retrieve from QueryUserStatus.
+//     $new_info = $extra_info->FindProfile($outgoing_appts["outgoing"][$apptStatus][0]["userIDReceiver"]);
+
+//     // Remove the userID from our outgoing appointments (it's no longer needed after the
+//     // previous query was executed)
+//     // unset($outgoing_appts["outgoing"][$apptStatus]["userIDReceiver"]);
+
+//     // Merge the new info into the key/value pair involving $apptStatus
+//     // as the key and the value as being new_info + the old details
+//     if (!empty($outgoing_appts["outgoing"][$apptStatus]) && !empty($new_info))
+//     {
+//         $outgoing_appts["outgoing"][$apptStatus][0] = $outgoing_appts["outgoing"][$apptStatus][0] + $new_info;
+//     }
+//     else if (!empty($new_info))
+//     {
+//         $outgoing_appts["outgoing"][$apptStatus][0] = $new_info;
+//     }
+// }
 
 // Create the results list containing all provisions
 // and all specialties
