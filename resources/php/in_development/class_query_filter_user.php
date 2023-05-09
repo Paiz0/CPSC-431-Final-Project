@@ -22,9 +22,9 @@ class QueryFilterUser extends Query
         //       each user that's returned. The name and provisions will be
         //       displayed, while the email will be set as a session variable
         //       so we know which profile to access.
-        $sql_one = "SELECT U.userID, U.name, U.zipcode, P.provision FROM Users AS U, Suppliers AS S, Provisions AS P WHERE U.userID = S.userID AND S.userID = P.userID AND S.supplierID = P.supplierID";
+        $sql_one = "SELECT U.userID, U.name, U.zipcode, P.provision FROM Users AS U, Suppliers AS S, Provisions AS P WHERE U.userID = S.userID AND S.userID = P.userID AND S.supplierID = P.supplierID AND U.contactable = :contactable";
 
-        $params = [];
+        $params = ["contactable" => RADIO_ON];
 
         if ($name != "")
         {
@@ -86,9 +86,9 @@ class QueryFilterUser extends Query
         //       displayed, while the email will be set as a session variable
         //       so we know which profile to access.
         // $sql_one = "SELECT U.name, U.zipcode, T.title FROM Users AS U, Doctors AS D, Titles AS T WHERE U.userID = D.userID AND D.userID = T.userID AND D.doctorID = T.doctorID AND U.name = :name AND U.zipcode = :zipcode AND ";
-        $sql_one = "SELECT U.userID, U.name, U.zipcode, T.title FROM Users AS U, Doctors AS D, Titles AS T WHERE U.userID = D.userID AND D.userID = T.userID AND D.doctorID = T.doctorID";
+        $sql_one = "SELECT U.userID, U.name, U.zipcode, T.title FROM Users AS U, Doctors AS D, Titles AS T WHERE U.userID = D.userID AND D.userID = T.userID AND D.doctorID = T.doctorID AND U.contactable = :contactable";
 
-        $params = [];
+        $params = ["contactable" => RADIO_ON];
 
         if ($name != "")
         {

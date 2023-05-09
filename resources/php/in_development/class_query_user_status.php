@@ -20,6 +20,15 @@ class QueryUserStatus extends Query
         parent::executeQuery($sql, $params);
     }
 
+    public function UpdateUser($userID, $name, $zipcode, $contactable)
+    {
+        $sql = "UPDATE Users SET name = :name, zipcode = :zipcode, contactable = :contactable WHERE userID = :userID";
+
+        $params = ["name" => $name, "zipcode" => $zipcode, "contactable" => $contactable, "userID" => $userID];
+
+        parent::executeQuery($sql, $params);
+    }
+
     public function CreateDoctor($userID)
     {
         $sql = "INSERT INTO Doctors (userID) VALUES (:userID)";
@@ -59,18 +68,18 @@ class QueryUserStatus extends Query
 
     public function GetSpecialities()
     {
-        $sql = "SELECT DISTINCT title FROM Titles";
+        $sql = "SELECT DISTINCT title FROM Titles AS T, Users AS U WHERE T.userID = U.userID AND U.contactable = :contactable";
 
-        $params = [];
+        $params = ["contactable" => RADIO_ON];
 
         return parent::executeQuery($sql, $params);
     }
 
     public function GetProvisions()
     {
-        $sql = "SELECT DISTINCT provision FROM Provisions";
+        $sql = "SELECT DISTINCT provision FROM Provisions AS P, Users AS U WHERE P.userID = U.userID AND U.contactable = :contactable";
 
-        $params = [];
+        $params = ["contactable" => RADIO_ON];
 
         return parent::executeQuery($sql, $params);
     }
@@ -130,7 +139,7 @@ class QueryUserStatus extends Query
     // This is very similar to FindUser above
     public function FindProfile($userID)
     {
-        $sql = "SELECT name, email, zipcode, type FROM Users WHERE userID = :userID";
+        $sql = "SELECT name, email, zipcode, type, contactable FROM Users WHERE userID = :userID";
 
         $params = ["userID" => $userID];
 
