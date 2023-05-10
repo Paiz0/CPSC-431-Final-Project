@@ -158,7 +158,7 @@ function searchData()
 				var tr = document.createElement("tr");
 				var name = document.createElement("td");
 				var name_link = document.createElement("a");
-				name_link.href = "../../profile.html?userID=" + encodeURIComponent(row.userID);
+				name_link.href = "profile.html?userID=" + encodeURIComponent(row.userID);
 				name_link.textContent = row.name;
 				name.appendChild(name_link);
 				var zipcode = document.createElement("td");
