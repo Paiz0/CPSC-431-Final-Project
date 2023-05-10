@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once 'resources\php\in_development\config.php';
+require_once 'resources/php/in_development/config.php';
 
 // Check if the user isn't logged in
 if (empty($_SESSION['loggedin'])) {
