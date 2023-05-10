@@ -59,13 +59,13 @@ if ($user != null)
     // Check if the user is a supplier
     if ($user['type'])
     {
-        header("Location: ./dashboard_supplier.php");
+        header("Location: ../../../dashboard_supplier.php");
     }
 
     // Otherwise they're a doctor
     else
     {
-        header("Location: ./dashboard_doctor.php");
+        header("Location: ../../../dashboard_doctor.php");
     }
 
     // header("Location: ../dashboard.php");

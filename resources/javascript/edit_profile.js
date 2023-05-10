@@ -13,6 +13,7 @@ var zipcode_field = document.getElementById("zipcode");
 var type_field = document.getElementById("type");
 var yes_radio = document.getElementById("yes-radio");
 var no_radio = document.getElementById("no-radio");
+const navDash = document.getElementById("dash");
 
 // Get the location of the submit button
 var submitButton = document.getElementById("submit-button");
@@ -55,6 +56,17 @@ window.onload = function() {
             {
                 no_radio.checked = true;
                 yes_radio.checked = false;
+            }
+
+            if (type_field.textContent == "Doctor")
+            {
+                console.log("is doctor");
+                navDash.href = "./dashboard_doctor.php";
+            }
+            else if (type_field.textContent == "Supplier")
+            {
+                console.log("is supplier");
+                navDash.href = "./dashboard_supplier.php";
             }
         }
     }

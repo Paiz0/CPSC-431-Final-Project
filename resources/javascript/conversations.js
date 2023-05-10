@@ -26,7 +26,7 @@ window.onload = function() {
         }
     }
 
-    xhr.open("GET", "get_contacts.php?", true);
+    xhr.open("GET", "resources/php/in_development/messaging_system/get_contacts.php?", true);
     xhr.send();
 
 }
@@ -73,7 +73,7 @@ function appendEmail(emails)
                 viewButton.addEventListener("click", function()
                 {
                     // CHANGE THE PATH HERE IF NEEDED!
-                    window.location.href = "../../../../messaging.html?email=" + encodeURIComponent(email);
+                    window.location.href = "./messaging.html?email=" + encodeURIComponent(email);
                     // alert(email);
                 });
                 removeButton.addEventListener("click", function()
@@ -100,7 +100,7 @@ function appendEmail(emails)
 
                     }
 
-                    xhr.open("GET", "remove_contact.php?email=" + encodeURIComponent(span.innerText), true);
+                    xhr.open("GET", "resources/php/in_development/messaging_system/remove_contact.php?email=" + encodeURIComponent(span.innerText), true);
                     xhr.send();
 
                     emailList.removeChild(li);

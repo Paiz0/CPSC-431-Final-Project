@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Start A Conversation</title>
+	<link rel="stylesheet" href="./resources/css/style_conversations.css">
+</head>
+<body>
+	<div class="container">
+        <div class="row">
+            <nav class="navbar">
+                <h1>MD Unite</h1>
+                <ul>
+                    <li>
+                        <a href="./landing.php">Home</a>
+                        <a href="./resources/php/logout.php">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+	<header>
+		<h1>My Conversations</h1>
+	</header>
+	<div class="email-in-ctn">
+		<form>
+			<label for="email-input">Email Lookup</label>
+			<input type="text" id="email-input" placeholder="Search for a conversation">
+			<button type="button" id="add-button">Search</button>
+		</form>
+		<ul id="email-list"></ul>
+	</div>
+	
+	<script src="./resources/javascript/conversations.js"></script>
+</body>
+</html>
