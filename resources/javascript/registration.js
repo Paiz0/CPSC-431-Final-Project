@@ -58,6 +58,28 @@ var provisions = [];
 var user_doctor_details = ["specialties", specialties, "specialty"];
 var user_supplier_details = ["provisions", provisions, "provision"];
 
+
+
+// Note: The following code is for form validation, but obviously is still
+//       the front end so it can't tell if the registration was actually validated.
+
+// const form = document.getElementById('my-form');
+// const submitButton = document.getElementById('submit-button');
+
+// submitButton.addEventListener('click', function(event) {
+// //   event.preventDefault(); // prevent form from submitting
+
+//   // Check if all required fields are valid
+//   if (form.checkValidity()) {
+//     // If all fields are valid, submit the form
+//     alert("You successfully registered!");
+//   } else {
+//     // If there are invalid fields, display an error message or handle the invalid fields
+//     alert('Please fill out all required fields.');
+//   }
+// });
+
+
 // Get the div elements that host all doctor/supplier data
 // const doctor_div = document.getElementById("doctor");
 // const supplier_div = document.getElementById("supplier");

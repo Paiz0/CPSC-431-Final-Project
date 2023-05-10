@@ -63,38 +63,53 @@ $db->establishConnection();
 // user information
 $new_user = new QueryUserStatus($db);
 
-// Create the new user
-$new_user->CreateUser($full_name, $email, $hashed_password, $zipcode, $is_doctor, $contactable_radio);
+try {
 
-// Get the new user's information
-$user_info = $new_user->FindUser($email, $password);
+    // Create the new user
+    $new_user->CreateUser($full_name, $email, $hashed_password, $zipcode, $is_doctor, $contactable_radio);
 
-// echo var_dump($user_info["userID"]);
+    // Get the new user's information
+    $user_info = $new_user->FindUser($email, $password);
 
-// echo "<br>" . $user_info;
+    // echo var_dump($user_info["userID"]);
 
-if ($is_doctor)
-{
-    // Create a doctor with our new userID
-    $new_user->CreateDoctor($user_info["userID"]);
+    // echo "<br>" . $user_info;
 
-    // Get the new user's doctor information
-    $doctor_info = $new_user->FindDoctor($user_info["userID"]);
+    if ($is_doctor)
+    {
+        // Create a doctor with our new userID
+        $new_user->CreateDoctor($user_info["userID"]);
 
-    // Insert our specialty into the table
-    $new_user->CreateSpecialty($user_info["userID"], $doctor_info["doctorID"], $extra_info);
+        // Get the new user's doctor information
+        $doctor_info = $new_user->FindDoctor($user_info["userID"]);
+
+        // Insert our specialty into the table
+        $new_user->CreateSpecialty($user_info["userID"], $doctor_info["doctorID"], $extra_info);
+    }
+
+    else
+    {
+        // Create a supplier with our new userID
+        $new_user->CreateSupplier($user_info["userID"]);
+
+        // Get the new user's speciality information
+        $supplier_info = $new_user->FindSupplier($user_info["userID"]);
+
+        // Insert our provision into the table
+        $new_user->CreateProvision($user_info["userID"], $supplier_info["supplierID"], $extra_info);
+    }
+
 }
 
-else
+catch (Exception $e)
 {
-    // Create a supplier with our new userID
-    $new_user->CreateSupplier($user_info["userID"]);
+    // Close the database connection for the time being
+    $db->closeConnection();
 
-    // Get the new user's speciality information
-    $supplier_info = $new_user->FindSupplier($user_info["userID"]);
-
-    // Insert our provision into the table
-    $new_user->CreateProvision($user_info["userID"], $supplier_info["supplierID"], $extra_info);
+    // Re-route the user back to the register page since
+    // they were unable to create an account.
+    header("Location: ../../register.html");
+    exit();
 }
 
 // Close the database connection, because it's no longer needed

@@ -17,11 +17,14 @@ form.addEventListener("submit", function() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200)
         {
-            // var data = JSON.parse(this.responseText);
+            // Let the user know they scheduled a meeting
+            // successfully.
+            alert("Appointment scheduled successfully!");
 
-            // console.log(data);
-            // Do stuff here if you end up adding
-            // a return value to the php file.
+            // Reset all of the values for the appointment creation
+            document.getElementById("date").value = "";
+            document.getElementById("time").value = "";
+            document.getElementById("note").value = "";
         }
     }
 
