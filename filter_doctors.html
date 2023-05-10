@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Doctors</title>
+    <link rel="stylesheet" href="./resources/css/style_filter.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+          <nav class="navbar">
+              <h1>MD Unite</h1>
+              <ul>
+                  <li>
+                      <a href="./landing.php">Home</a>
+                      <a href="./resources/php/logout.php">Logout</a>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+    </div>
+    <div class="filter-container">
+      <div class="left">
+        <h1>Find Doctors</h1>
+        <!-- <form form method="post" action="title_grabber.php"> -->
+        <form>
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" placeholder="Enter a name"><br><br>
+  
+          <label for="zipcode">Zipcode:</label><br>
+          <input type="text" id="zipcode" name="zipcode" placeholder="Enter a zipcode"><br><br>
+  
+          <label for="title" id="extra-info">Specialty:</label>
+          <select id="title" name="title">
+            <!-- PUT DEFAULT VALUES HERE! -->
+          </select>
+          <br>
+          <button id="spec-btn" type="button" onclick="addTitle();">Add</button>
+          <button id="spec-btn" type="button" onclick="clearTitles();">Clear</button>
+          <ul id="titleList" name="mylist"></ul>
+          <!-- Hidden input field for title list -->
+          <input type="hidden" id="titleListInput" name="titleList">
+      
+          <button id="sub-btn" type="button" onclick="searchData();">Submit</button>
+        </form>
+      </div>
+      
+      <div class="right">
+        <h1>Results</h1>
+        <!-- <ul id="resultsList"></ul> -->
+        <div class="result-ctn">
+          <table id="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Zipcode</th>
+                <th>Title</th>
+              </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be displayed here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="./resources/javascript/filter.js"></script>
+  </body>
+</html>

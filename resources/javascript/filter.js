@@ -58,7 +58,7 @@ window.onload = function() {
 		}
 	};
 
-	xhr.open("GET", "../get_specialties_provisions.php", true);
+	xhr.open("GET", "resources/php/in_development/get_specialties_provisions.php", true);
 	xhr.send();
 
 }
@@ -158,7 +158,7 @@ function searchData()
 				var tr = document.createElement("tr");
 				var name = document.createElement("td");
 				var name_link = document.createElement("a");
-				name_link.href = "../../../../profile.html?userID=" + encodeURIComponent(row.userID);
+				name_link.href = "../../profile.html?userID=" + encodeURIComponent(row.userID);
 				name_link.textContent = row.name;
 				name.appendChild(name_link);
 				var zipcode = document.createElement("td");
@@ -194,11 +194,11 @@ function searchData()
 	// URL which we hand-craft ourselves with "getData.php?search=".
 	if (dropdown_title.textContent === "Specialty:")
 	{
-		xhr.open("GET", "test.php?name=" + encodeURIComponent(name) + "&zipcode=" + encodeURIComponent(zipcode) + "&specialties=" + encodeURIComponent(titleQueryString), true);
+		xhr.open("GET", "resources/php/in_development/dynamic_form_passing/test.php?name=" + encodeURIComponent(name) + "&zipcode=" + encodeURIComponent(zipcode) + "&specialties=" + encodeURIComponent(titleQueryString), true);
 	}
 	else if (dropdown_title.textContent === "Provision:")
 	{
-		xhr.open("GET", "test.php?name=" + encodeURIComponent(name) + "&zipcode=" + encodeURIComponent(zipcode) + "&provisions=" + encodeURIComponent(titleQueryString), true);
+		xhr.open("GET", "resources/php/in_development/dynamic_form_passing/test.php?name=" + encodeURIComponent(name) + "&zipcode=" + encodeURIComponent(zipcode) + "&provisions=" + encodeURIComponent(titleQueryString), true);
 	}
 
 	xhr.send();
