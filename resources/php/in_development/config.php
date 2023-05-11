@@ -1,7 +1,7 @@
 <?php
 
 define("DB_HOST", "localhost");
-define("DB_NAME", "mdunite");
+define("DB_NAME", "Andrew_Steven_DB");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "");
 
