@@ -17,7 +17,6 @@
                 <h1>MD Unite</h1>
                 <ul>
                     <li>
-                        <a href="./landing.php">Home</a>
                         <a href="./login.html">Login</a>
                     </li>
                 </ul>
