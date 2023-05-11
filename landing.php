@@ -18,7 +18,6 @@
                 <ul>
                     <li>
                         <a href="./landing.php">Home</a>
-                        <a href="./profile.html">Profile</a>
                         <a href="./login.html">Login</a>
                     </li>
                 </ul>
