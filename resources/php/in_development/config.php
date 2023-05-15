@@ -5,6 +5,9 @@ define("DB_NAME", "Andrew_Steven_DB");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "");
 
+define("READ", "1");
+define("UNREAD", "0");
+
 define("DOCTOR_TYPE", "1");
 define("SUPPLIER_TYPE", "0");
 

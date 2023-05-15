@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS Messages (
     userIDReceiver int NOT NULL,
     msgID int AUTO_INCREMENT NOT NULL,
     msgContent varchar(500),
+    readStatus TINYINT(1) NOT NULL,
     
     UNIQUE (msgID),
     FOREIGN KEY (userIDSender) REFERENCES Users(userID),
@@ -123,13 +124,13 @@ VALUES
     (5, 2, 'Dermatologist');
 
 -- Insert values into the Messages table
-INSERT IGNORE INTO Messages (userIDSender, userIDReceiver, msgContent) 
+INSERT IGNORE INTO Messages (userIDSender, userIDReceiver, msgContent, readStatus) 
 VALUES 
-    (1, 2, 'Hello, Dr. Lee. I would like to schedule a meeting to discuss your latest research.'),
-    (2, 1, 'Hello, John. I would be happy to meet with you. What dates are you available?'),
-    (4, 2, 'Hi, Dr. Lee. I am a new supplier of medical equipment and would like to discuss potential business opportunities.'),
-    (2, 5, 'Hello, Sarah. Your recent research on skin cancer caught my attention. I would like to learn more.'),
-    (5, 1, 'Hi, John. I am a dermatologist specializing in skin cancer research. I would be happy to discuss my work with you.');
+    (1, 2, 'Hello, Dr. Lee. I would like to schedule a meeting to discuss your latest research.', 1),
+    (2, 1, 'Hello, John. I would be happy to meet with you. What dates are you available?', 0),
+    (4, 2, 'Hi, Dr. Lee. I am a new supplier of medical equipment and would like to discuss potential business opportunities.', 0),
+    (2, 5, 'Hello, Sarah. Your recent research on skin cancer caught my attention. I would like to learn more.', 1),
+    (5, 1, 'Hi, John. I am a dermatologist specializing in skin cancer research. I would be happy to discuss my work with you.', 0);
 
 -- Insert values into the Appointments table
 INSERT IGNORE INTO Appointments (userIDSender, userIDReceiver, apptDetails, apptDate, apptStatus) 

@@ -49,7 +49,6 @@
         // Create an event listener for when the button is clicked
         sendMessage.addEventListener("click", function()
         {
-
             var message = document.getElementById('message-input').value;
 
             // Make sure that the message field isn't empty
@@ -72,10 +71,24 @@
 
         });
 
+        function updateUnreadMessages()
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function()
+            {
+                // There's nothing to do here since we're only updating messages in the backend
+            }
+            xhr.open("GET", "./resources/php/in_development/messaging_system/update_unread_messages.php?email=" + encodeURIComponent(email), true);
+            xhr.send();
+        }
+
         function loadMessages()
         {
             if (email)
             {
+                // Update all of the unread messages sent by the other person (between them and the current user) to be read
+                updateUnreadMessages();
+
                 emailDisplay.textContent = email;
                 const xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function()
@@ -95,9 +108,22 @@
                         {
                             var row = data[i];
 
+                            // Check if the message is read
+                            if (row["readStatus"])
+                            {
+                                var read_status = "read";
+                            }
+
+                            // Otherwise the message is unread
+                            else
+                            {
+                                var read_status = "unread";
+                            }
+
                             var outerDiv = document.createElement("div");
                             var innerDiv = document.createElement("div");
                             var messageText = document.createElement("p");
+                            var readLast = document.createElement("span");
 
                             console.log(email);
                             console.log(email.length);
@@ -113,17 +139,23 @@
                                 console.log("The other person sent the message!");
                                 outerDiv.classList.add("incoming");
                                 innerDiv.classList.add("indetail");
+                                readLast.classList.add("read");
+
+                                readLast.innerHTML = read_status;
                             }
                             else
                             {
                                 console.log("You sent the message!");
                                 outerDiv.classList.add("outgoing");
                                 innerDiv.classList.add("outdetail");
+                                readLast.classList.add("read");
+                                readLast.innerHTML = read_status;
                             }
 
                             messageText.textContent = row.msgContent;
 
                             innerDiv.appendChild(messageText);
+                            innerDiv.appendChild(readLast);
                             outerDiv.appendChild(innerDiv);
                             messageBox.appendChild(outerDiv);
                         }

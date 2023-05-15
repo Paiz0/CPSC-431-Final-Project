@@ -13,6 +13,17 @@ class QueryMessageHandler extends Query
         parent::__construct($db, $statement);
     }
 
+    // This function updates the status of all messages
+    // sent from one user to another to "read"
+    public function updateStatusMessages($sender_id, $receiver_id)
+    {
+        $sql = "UPDATE Messages SET readStatus = :read WHERE userIDSender = :sender_id AND userIDReceiver = :receiver_id";
+
+        $params = ["read" => READ, "sender_id" => $sender_id, "receiver_id" => $receiver_id];
+
+        parent::executeQuery($sql, $params);
+    }
+
     // This function queries the database for all messages
     // that were sent from $sender_id to $receiver_id.
     // Note that it also returns userIDSender, since we
@@ -22,10 +33,26 @@ class QueryMessageHandler extends Query
         // This sql statement gets all messages sent by
         // $sender_id and received by $receiver_id
         // $sql = "SELECT msgID, userIDSender, msgContent FROM Messages WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id";
-        $sql = "SELECT msgID, Receiver.email AS receiverEmail, Sender.email AS senderEmail, msgContent FROM Messages, Users AS Receiver, Users AS Sender WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id AND Receiver.userID = userIDReceiver AND Sender.userID = userIDSender";
+        $sql = "SELECT msgID, Receiver.email AS receiverEmail, Sender.email AS senderEmail, msgContent, readStatus FROM Messages, Users AS Receiver, Users AS Sender WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id AND Receiver.userID = userIDReceiver AND Sender.userID = userIDSender";
 
         // Store the parameters to be plugged into the sql statement above
         $params = ["receiver_id" => $receiver_id, "sender_id" => $sender_id];
+
+        // Execute the query and save the result
+        $result = parent::executeQuery($sql, $params);
+
+        return $result;
+    }
+
+    public function readUnreadMessages($sender_id, $receiver_id)
+    {
+        // This sql statement gets all messages sent by
+        // $sender_id and received by $receiver_id
+        // $sql = "SELECT msgID, userIDSender, msgContent FROM Messages WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id";
+        $sql = "SELECT msgID, Receiver.email AS receiverEmail, Sender.email AS senderEmail, msgContent FROM Messages AS M, Users AS Receiver, Users AS Sender WHERE userIDReceiver = :receiver_id AND userIDSender = :sender_id AND Receiver.userID = userIDReceiver AND Sender.userID = userIDSender AND M.readStatus = :unread";
+
+        // Store the parameters to be plugged into the sql statement above
+        $params = ["receiver_id" => $receiver_id, "sender_id" => $sender_id, "unread" => UNREAD];
 
         // Execute the query and save the result
         $result = parent::executeQuery($sql, $params);
@@ -42,10 +69,10 @@ class QueryMessageHandler extends Query
         // with the source coming from $sender_id and the
         // destination coming from $receiver_id and content
         // $message
-        $sql = "INSERT INTO Messages (userIDSender, userIDReceiver, msgContent) VALUES (:sender_id, :receiver_id, :message)";
+        $sql = "INSERT INTO Messages (userIDSender, userIDReceiver, msgContent, readStatus) VALUES (:sender_id, :receiver_id, :message, :read_status)";
 
         // Store the parameters to be plugged into the sql statement above
-        $params = ["sender_id" => $sender_id, "receiver_id" => $receiver_id, "message" => $message];
+        $params = ["sender_id" => $sender_id, "receiver_id" => $receiver_id, "message" => $message, "read_status" => UNREAD];
 
         // Execute the query and save the result
         $result = parent::executeQuery($sql, $params);

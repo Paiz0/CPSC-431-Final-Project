@@ -74,7 +74,7 @@ if ($user != null)
 // If they don't exist, redirect them back to the login page
 else
 {
-    header("Location: ../../../login.html");
+    header("Location: ../../../login_error.html");
 }
 
 ?>
