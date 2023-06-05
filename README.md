@@ -127,7 +127,7 @@ Mdunite - Connecting Doctors with Suppliers</p>
 <p>User Stories &amp; Test Cases</p>
 <p>Step 1) Setup: Download and start XAMPP. If you don't have XAMPP installed, download it here: <a href="https://www.apachefriends.org/download.html">https://www.apachefriends.org/download.html</a></p>
 <p>Step 2) Landing Page: Open up a browser and navigate to <a href="http://localhost/Andrew_Steven_Final_Project/code/landing.php">http://localhost/Andrew_Steven_Final_Project/code/landing.php</a></p>
-![Figure 1: landing.php page](path/to/figure1.png)
+![Figure 1: landing.php page](images/figure1.png)
 <p>Elaboration:</p>
 <p>When the landing.php page is viewed according to Figure 1, the php will automatically establish the “Andrew_Steven_DB” database, create all tables and add default data to the tables. If this page is viewed multiple times there won’t be any error generated and the database won’t change. One of the users created by default is Sarah Lee, which is the user that we will be logging in as later.</p>
 <p>Functionality:</p>
@@ -135,8 +135,8 @@ Mdunite - Connecting Doctors with Suppliers</p>
 When the “Join MD Unite Now” button is clicked, the user will be redirected to the register.html page. If the “Login” navbar button is clicked, the user will be redirected to the login.html page.
 </code></pre>
 <p>Step 3) Registration Page: Either click the “Join MD Unite Now” navbar button on the landing.php page or simply navigate to <a href="http://localhost/Andrew_Steven_Final_Project/code/register.html">http://localhost/Andrew_Steven_Final_Project/code/register.html</a></p>
-![Figure 2a: register.html page for type Doctor](path/to/figure2a.png)
-![Figure 2b: register.html page for type supplier](path/to/figure2b.png)
+![Figure 2a: register.html page for type Doctor](images/figure2a.png)
+![Figure 2b: register.html page for type supplier](images/figure2b.png)
 <p>Elaboration:</p>
 <pre><code>    All of the fields will have a red outline that indicates the field isn’t correctly filled in. Once all fields are accurately filled in, these descriptors will turn blue. When a field is clicked the descriptor is raised up, which leaves room for the user to type in information. If the user sets the “Contactable?” field to “Yes”, then the user will be searchable when other users visit the filtering page. If this value is set to “No”, then the user will not be searchable when other users visit the filtering page. If the user sets the “User Type” field to “Doctor”, then the page will look like Figure 2a. If the “User Type” field is set to “Supplier”, then the page will look like Figure 2b. The page will automatically retrieve a list of all specialties/provisions from all currently registered users and display them as a dropdown under that corresponding field for options to choose from.
 </code></pre>
@@ -147,8 +147,8 @@ If the account couldn’t be created, the registration form will clear all input
 The user may click the “Home” navbar button, which will redirect the user back to the landing.php page or the user may click the “Login” navbar button to be redirected to the login.html page.
 </code></pre>
 <p>Step 4) Login Page: Once an account is created or the “Login” navbar button is pressed on one of the pages or the user navigates to <a href="http://localhost/Andrew_Steven_Final_Project/code/login.html">http://localhost/Andrew_Steven_Final_Project/code/login.html</a></p>
-![Figure 3a: login.html page](path/to/figure3a.png)
-![Figure 3b: login_error.html page](path/to/figure3b.png)
+![Figure 3a: login.html page](images/figure3a.png)
+![Figure 3b: login_error.html page](images/figure3b.png)
 <p>Elaboration:</p>
 <pre><code>
 The user is initially directed to the login.html page (Figure 3a). Once the user types in an email and password and clicks “Login” the database will hash the password and compare it to the hashed password in the database.
@@ -163,8 +163,8 @@ If the user clicks the “Signup” button, the user will be redirected to the r
 All default users in the database have a password value of password. In this case, the following pages will be showing data for the user Sarah Lee with login information email: sarahlee@yahoo.com and password: password.
 </code></pre>
 <p>Step 5) Dashboard Pages: Login with a valid email/password on the login.html page (this page cannot be accessed unless a user is logged in).</p>
-![Figure 4a: dashboard_doctor.php](path/to/figure4a.png) (logged in “<a href="mailto:&#115;&#97;&#114;&#x61;&#104;&#x6c;&#x65;&#101;&#x40;&#x79;&#x61;&#104;&#x6f;&#111;&#x2e;&#x63;&#x6f;&#x6d;">&#115;&#97;&#114;&#x61;&#104;&#x6c;&#x65;&#101;&#x40;&#x79;&#x61;&#104;&#x6f;&#111;&#x2e;&#x63;&#x6f;&#x6d;</a>” with “password”)</p>
-![Figure 4b: dashboard_supplier.php](path/to/figure4b.png) (logged in “<a href="mailto:&#x6b;&#105;&#x6d;&#x6b;&#105;&#x6d;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x6b;&#105;&#x6d;&#x6b;&#105;&#x6d;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>” with “password”)</p>
+![Figure 4a: dashboard_doctor.php](images/figure4a.png) (logged in “<a href="mailto:&#115;&#97;&#114;&#x61;&#104;&#x6c;&#x65;&#101;&#x40;&#x79;&#x61;&#104;&#x6f;&#111;&#x2e;&#x63;&#x6f;&#x6d;">&#115;&#97;&#114;&#x61;&#104;&#x6c;&#x65;&#101;&#x40;&#x79;&#x61;&#104;&#x6f;&#111;&#x2e;&#x63;&#x6f;&#x6d;</a>” with “password”)</p>
+![Figure 4b: dashboard_supplier.php](images/figure4b.png) (logged in “<a href="mailto:&#x6b;&#105;&#x6d;&#x6b;&#105;&#x6d;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x6b;&#105;&#x6d;&#x6b;&#105;&#x6d;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>” with “password”)</p>
 <p>Elaboration:</p>
 <pre><code>
 If the user is a doctor, then the dashboard page will look like Figure 4a after the user logs in. If the user is a supplier, then the dashboard page will look like Figure 4b.
@@ -179,8 +179,8 @@ If the user clicks the “Home” navbar button or the “Logout” navbar butto
 The logout page will automatically terminate the php session and redirect the user to the login.html page.
 </code></pre>
 <p>Step 6) Find Doctors/Find Suppliers Page: Click on the “Find Doctors” or “Find Suppliers” button from the dashboard page.</p>
-![Figure 5a: filter_suppliers.php](path/to/figure5a.png) (logged in “<a href="mailto:&#x73;&#x61;&#x72;&#x61;&#104;&#108;&#x65;&#101;&#64;&#121;&#x61;&#x68;&#111;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x61;&#x72;&#x61;&#104;&#108;&#x65;&#101;&#64;&#121;&#x61;&#x68;&#111;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;</a>” with “password”)</p>
-![Figure 5b: filter_doctors.php](path/to/figure5b.png) (logged in “<a href="mailto:&#x6b;&#105;&#109;&#107;&#105;&#109;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x6b;&#105;&#109;&#107;&#105;&#109;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a>” with “password”)</p>
+![Figure 5a: filter_suppliers.php](images/figure5a.png) (logged in “<a href="mailto:&#x73;&#x61;&#x72;&#x61;&#104;&#108;&#x65;&#101;&#64;&#121;&#x61;&#x68;&#111;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x61;&#x72;&#x61;&#104;&#108;&#x65;&#101;&#64;&#121;&#x61;&#x68;&#111;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;</a>” with “password”)</p>
+![Figure 5b: filter_doctors.php](images/figure5b.png) (logged in “<a href="mailto:&#x6b;&#105;&#109;&#107;&#105;&#109;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x6b;&#105;&#109;&#107;&#105;&#109;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a>” with “password”)</p>
 <p>Elaboration:</p>
 <pre><code>
 The user may fill in the fields for “Name”, “Zipcode” and “Specialty”/”Provision”. Every field that’s inputted will be a constraint on the query that’s made in the back end.
@@ -193,7 +193,7 @@ The page will automatically retrieve a list of all specialties/provisions from a
 Clicking the “My Profile” navbar button leads to the edit_profile.html file and clicking the “Logout” navbar button leads to the logout.php file.
 </code></pre>
 <p>Step 7) Profile Page: Once a user’s information is returned from the filtering page, click on the user’s name.</p>
-![Figure 6: profile.html page](path/to/figure6.png) (after clicking on “John Smith” on filter_suppliers.html page)</p>
+![Figure 6: profile.html page](images/figure6.png) (after clicking on “John Smith” on filter_suppliers.html page)</p>
 <p>Elaboration:</p>
 <pre><code>
 This page shows extra user information about a particular user returned from the filtering page. There’s a “userID” parameter in the URL that’s provided so that the page knows the user information to load.
@@ -204,7 +204,7 @@ If the user clicks the “Messages” button the user is redirected to the conve
 If the user clicks the ”My Profile” navbar button the user is redirected to the edit_profile.html page. If the user clicks the “Logout” navbar button the user is redirected to the logout.php file.
 </code></pre>
 <p>Step 8) Appointments Booking: Click the “Appointments” button on the profile.html page.</p>
-![Figure 7: appointment.html](path/to/figure7.png)
+![Figure 7: appointment.html](images/figure7.png)
 <p>Elaboration:</p>
 <pre><code>
 There’s a “userID” parameter in the URL that’s provided so that the page knows which user the appointment is being created with.
@@ -216,7 +216,7 @@ The “Additional Details” field can be filled in with information about the a
 If the user clicks the “My Profile” page, the user will be redirected to the edit_profile.html page. If the user clicks the “Logout” navbar button the user will be redirected to the logout.php file.
 </code></pre>
 <p>Step 9) Edit Profile Page: The user can click the “Edit Profile” button on the dashboard page or click “My Profile” in the navbar of one of the various pages.</p>
-![Figure 8: edit_profile.html](path/to/figure8.png) (logged in “<a href="mailto:&#x73;&#97;&#114;&#97;&#104;&#108;&#101;&#101;&#x40;&#121;&#97;&#x68;&#111;&#111;&#46;&#99;&#111;&#109;">&#x73;&#97;&#114;&#97;&#104;&#108;&#101;&#101;&#x40;&#121;&#97;&#x68;&#111;&#111;&#46;&#99;&#111;&#109;</a>” with “password”)</p>
+![Figure 8: edit_profile.html](images/figure8.png) (logged in “<a href="mailto:&#x73;&#97;&#114;&#97;&#104;&#108;&#101;&#101;&#x40;&#121;&#97;&#x68;&#111;&#111;&#46;&#99;&#111;&#109;">&#x73;&#97;&#114;&#97;&#104;&#108;&#101;&#101;&#x40;&#121;&#97;&#x68;&#111;&#111;&#46;&#99;&#111;&#109;</a>” with “password”)</p>
 <p>Elaboration:</p>
 <pre><code>
 Upon viewing the page, the current user’s information will be loaded from the php session. The three editable fields are “Full Name”, “Zipcode” and “Contactable”.
@@ -228,7 +228,7 @@ If the user clicks the “Messages” button the user will be redirected to the 
 If the user clicks the “Dashboard” navbar button the user will be redirected to the corresponding dashboard page. If the user clicks the “Logout” button the user will be redirected to the logout.php file.
 </code></pre>
 <p>Step 10) Appointments View Page: Click the “Appointments” button on the edit_profile.html page or fill out and submit an appointment on the appointment.html page.</p>
-![Figure 9: appointmentView.html](path/to/figure9.png) (logged in “<a href="mailto:&#115;&#97;&#x72;&#x61;&#104;&#108;&#101;&#101;&#x40;&#x79;&#x61;&#x68;&#111;&#111;&#x2e;&#99;&#x6f;&#109;">&#115;&#97;&#x72;&#x61;&#104;&#108;&#101;&#101;&#x40;&#x79;&#x61;&#x68;&#111;&#111;&#x2e;&#99;&#x6f;&#109;</a>” with “password”)</p>
+![Figure 9: appointmentView.html](images/figure9.png) (logged in “<a href="mailto:&#115;&#97;&#x72;&#x61;&#104;&#108;&#101;&#101;&#x40;&#x79;&#x61;&#x68;&#111;&#111;&#x2e;&#99;&#x6f;&#109;">&#115;&#97;&#x72;&#x61;&#104;&#108;&#101;&#101;&#x40;&#x79;&#x61;&#x68;&#111;&#111;&#x2e;&#99;&#x6f;&#109;</a>” with “password”)</p>
 <p>Elaboration:</p>
 <pre><code>
 
@@ -249,7 +249,7 @@ Outgoing appointments:
 If the user clicks the “My Profile” navbar button, the user is redirected to the edit_profile.html page. If the user clicks the “Logout” navbar button, the user is redirected to the logout.php file.
 </code></pre>
 <p>Step 11) Conversation List: Click on the “Appointments” button on the edit_profile.html page or the profile.html page. Another way to access this page is by clicking the “Messaging” button on the dashboard page.</p>
-![Figure 10: conversations.html](path/to/figure10.png)
+![Figure 10: conversations.html](images/figure10.png)
 <p>Elaboration:</p>
 <pre><code>
 This page allows the user to create a new conversation with another user via email. If an email is inputted into the email lookup field and searched, the email will be moved to a list on the right-hand side of the page.
@@ -263,7 +263,7 @@ If one user starts a conversation with another user, that other user will see th
 If the user clicks the “My Profile” navbar button, the user is redirected to the edit_profile.html page. If the user clicks the “Logout” navbar button the user is redirected to the logout.php file.
 </code></pre>
 <p>Step 12) Message Page: Click the “View” button for an existing email in the list on the conversations.html page.</p>
-![Figure 11: messaging.html](path/to/figure_11.png) (logged in “<a href="mailto:&#115;&#97;&#114;&#97;&#x68;&#x6c;&#101;&#x65;&#x40;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;">&#115;&#97;&#114;&#97;&#x68;&#x6c;&#101;&#x65;&#x40;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;</a>” with “password” and viewing the messages of the user “<a href="mailto:&#106;&#111;&#x68;&#x6e;&#115;&#109;&#105;&#x74;&#104;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#106;&#111;&#x68;&#x6e;&#115;&#109;&#105;&#x74;&#104;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>”)</p>
+![Figure 11: messaging.html](images/figure_11.png) (logged in “<a href="mailto:&#115;&#97;&#114;&#97;&#x68;&#x6c;&#101;&#x65;&#x40;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;">&#115;&#97;&#114;&#97;&#x68;&#x6c;&#101;&#x65;&#x40;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;</a>” with “password” and viewing the messages of the user “<a href="mailto:&#106;&#111;&#x68;&#x6e;&#115;&#109;&#105;&#x74;&#104;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#106;&#111;&#x68;&#x6e;&#115;&#109;&#105;&#x74;&#104;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>”)</p>
 <p>Elaboration:</p>
 <pre><code>
 When a message is typed in and the send button is clicked, a message is sent to the other user.
